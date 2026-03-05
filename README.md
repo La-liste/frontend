@@ -35,5 +35,6 @@ After that, install the packages and depedencies
 
 And finally, run the application
 
-`npx vite --force`<br />
+`npx vite --force`
+
 (use the `--host` argument to be able to access it from other devices)
