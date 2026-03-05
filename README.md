@@ -1,6 +1,6 @@
-<h1 style="display:flex; align-items:center; justify-content:flex-start; gap:10px;">
-  <img src="icon.png" width="50">
-  La liste - Front-End
+<h1>
+  <img src="https://raw.githubusercontent.com/La-liste/frontend/refs/heads/main/icon.png" width="40" align="center" />
+  La liste - Front-end
 </h1>
 
 ## Presentation
