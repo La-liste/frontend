@@ -26,9 +26,11 @@ First, clone the repository
 `git clone https://github.com/La-liste/frontend`
 
 Then go into its folder
+
 `cd frontend`
 
 After that, install the packages and depedencies
+
 `npm install`
 
 And finally, run the application
