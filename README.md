@@ -34,5 +34,6 @@ After that, install the packages and depedencies
 `npm install`
 
 And finally, run the application
+
 `npx vite --force`<br />
 (use the `--host` argument to be able to access it from other devices)
