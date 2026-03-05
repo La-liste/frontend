@@ -1,0 +1,207 @@
+{
+    "app": {
+        "title": "La Liste"
+    },
+    "field": {
+        "required": "Ce champ est requis",
+        "mismatch": "Les mots de passe ne correspondent pas"
+    },
+    "menu": {
+        "home": "Accueil",
+        "lists": "Listes",
+        "inventory": "Inventaire",
+        "recipes": "Recettes",
+        "settings": "Paramètres",
+        "logout": "Déconnexion",
+        "manage": "Gérer mes foyers"
+    },
+    "init": {
+        "button": {
+            "start": "Commencer",
+            "next": "Suivant",
+            "finish": "Terminer"
+        },
+        "welcome": {
+            "label": "Bienvenue sur {{appName}}, nous<br /> allons commencer l'initialisation",
+            "language": "I speak English"
+        },
+        "user": {
+            "label": "Veuillez choisir un nom d'utilisateur"
+        },
+        "password": {
+            "label": "Veuillez définir un mot de passe"
+        },
+        "home": {
+            "label": "Nommez votre 1er foyer",
+            "input": "Nom du foyer"
+        },
+        "done": {
+            "label": "Tout est bon, vous pouvez vous<br />aventurer dans {{appName}}"
+        }
+    },
+    "auth": {
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe",
+        "verify": "Vérifier le mot de passe",
+        "button": "Se connecter"
+    },
+    "home": {
+        "title": "Accueil"
+    },
+    "lists": {
+        "title": "Listes",
+        "latest": "Dernières listes",
+        "shared": "Partagée",
+        "add": "Ajouter une liste",
+        "validate": "Valider la liste",
+        "save": "Enregistrer la liste",
+        "edit": "Modifier la liste",
+        "delete": "Supprimer la liste",
+        "notFound": "Liste introuvable",
+        "placeholders": {
+            "name": "Nom de la liste...",
+            "item": "Élément...",
+            "quantity": "Quantité..."
+        }
+    },
+    "inventory": {
+        "title": "Inventaire",
+        "name": "Nom",
+        "quantity": "Quantité",
+        "edit": "Modifier l'inventaire",
+        "save": "Enregistrer l'inventaire",
+        "placeholders": {
+            "item": "Élément...",
+            "quantity": "Quantité..."
+        }
+    },
+    "recipes": {
+        "title": "Recettes",
+        "latest": "Dernières recettes",
+        "ingredients": {
+            "desktop": "Ingrédients",
+            "mobile": "Ingr."
+        },
+        "quantity": {
+            "desktop": "Quantité",
+            "mobile": "Quant."
+        },
+        "placeholders": {
+            "name": "Nom de la recette...",
+            "ingredient": "Ingrédient...",
+            "quantity": "Quantité..."
+        },
+        "add": "Ajouter une recette",
+        "edit": "Modifier la recette",
+        "save": "Enregistrer la recette",
+        "cook": "Cuisiner cette recette",
+        "list": "Ajouter ce qui manque",
+        "notFound": "Recette introuvable"
+    },
+    "settings": {
+        "title": "Paramètres",
+        "buttons": {
+            "general": "Paramètres généraux",
+            "account": "Mon compte",
+            "homes": "Mes foyers",
+            "admin": "Administration",
+            "save": "Enregistrer les modifications"
+        },
+        "general": {
+            "title": "Paramètres généraux",
+            "language": "Changer la langue",
+            "theme": "Changer le thème",
+            "themes": [
+                {
+                    "name": "Bleu",
+                    "value": "blue"
+                },
+                {
+                    "name": "Rouge",
+                    "value": "red"
+                },
+                {
+                    "name": "Vert",
+                    "value": "green"
+                },
+                {
+                    "name": "Jaune",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Violet",
+                    "value": "purple"
+                },
+                {
+                    "name": "Rose",
+                    "value": "pink"
+                },
+                {
+                    "name": "Noir",
+                    "value": "black"
+                },
+                {
+                    "name": "Blanc",
+                    "value": "white"
+                }
+            ]
+        },
+        "account": {
+            "title": "Mon compte",
+            "informations": "Informations",
+            "security": "Sécurité"
+        },
+        "homes": {
+            "title": "Mes foyers",
+            "homes": "Foyers",
+            "actions": "Actions",
+            "add": {
+                "label": "Ajouter un foyer",
+                "informations": "Informations",
+                "name": "Nom du foyer",
+                "button": "Ajouter le foyer"
+            },
+            "edit": {
+                "label": "Modifier un foyer",
+                "informations": "Informations",
+                "name": "Nom du foyer",
+                "button": "Enregistrer le foyer"
+            }
+        },
+        "admin": {
+            "title": "Administration",
+            "users": {
+                "desktop": "Utilisateurs",
+                "mobile": "Utilis."
+            },
+            "admin": {
+                "desktop": "Administrateur",
+                "mobile": "Admin."
+            },
+            "actions": {
+                "desktop": "Actions",
+                "mobile": "Actions"
+            },
+            "add": {
+                "label": "Ajouter un utilisateur",
+                "informations": "Informations",
+                "name": "Nom de l'utilisateur",
+                "password": "Mot de passe",
+                "admin": "Administrateur",
+                "button": "Ajouter l'utilisateur"
+            },
+            "edit": {
+                "label": "Modifier un utilisateur",
+                "informations": "Informations",
+                "name": "Nom de l'utilisateur",
+                "password": "Mot de passe",
+                "admin": "Administrateur",
+                "button": "Enregistrer l'utilisateur"
+            }
+        }
+    }
+}

@@ -1,0 +1,207 @@
+{
+    "app": {
+        "title": "La Liste"
+    },
+    "field": {
+        "required": "This field is required",
+        "mismatch": "Passwords do not match"
+    },
+    "menu": {
+        "home": "Home",
+        "lists": "Lists",
+        "inventory": "Inventory",
+        "recipes": "Recipes",
+        "settings": "Settings",
+        "logout": "Logout",
+        "manage": "Manage my homes"
+    },
+    "init": {
+        "button": {
+            "start": "Start",
+            "next": "Next",
+            "finish": "Finish"
+        },
+        "welcome": {
+            "label": "Welcome to {{appName}}, we're going to<br />start the initialization",
+            "language": "Je parle Français"
+        },
+        "user": {
+            "label": "Please choose a username"
+        },
+        "password": {
+            "label": "Please define a password"
+        },
+        "home": {
+            "label": "Name your 1st home",
+            "input": "Home name"
+        },
+        "done": {
+            "label": "All set, you can now<br />explore {{appName}}"
+        }
+    },
+    "auth": {
+        "username": "Username",
+        "password": "Password",
+        "verify": "Verify password",
+        "button": "Log in"
+    },
+    "home": {
+        "title": "Home"
+    },
+    "lists": {
+        "title": "Lists",
+        "latest": "Latest lists",
+        "shared": "Shared",
+        "add": "Add a list",
+        "validate": "Validate list",
+        "save": "Save list",
+        "edit": "Edit list",
+        "delete": "Delete list",
+        "notFound": "List not found",
+        "placeholders": {
+            "name": "List name...",
+            "item": "Item...",
+            "quantity": "Quantity..."
+        }
+    },
+    "inventory": {
+        "title": "Inventory",
+        "name": "Name",
+        "quantity": "Quantity",
+        "edit": "Edit inventory",
+        "save": "Save inventory",
+        "placeholders": {
+            "item": "Item...",
+            "quantity": "Quantity..."
+        }
+    },
+    "recipes": {
+        "title": "Recipes",
+        "latest": "Latest recipes",
+        "ingredients": {
+            "desktop": "Ingredients",
+            "mobile": "Ingr."
+        },
+        "quantity": {
+            "desktop": "Quantity",
+            "mobile": "Quant."
+        },
+        "placeholders": {
+            "name": "Recipe name...",
+            "ingredient": "Ingredient...",
+            "quantity": "Quantity..."
+        },
+        "add": "Add a recipe",
+        "edit": "Edit recipe",
+        "save": "Save recipe",
+        "cook": "Cook this recipe",
+        "list": "Add what's missing",
+        "notFound": "Recipe not found"
+    },
+    "settings": {
+        "title": "Settings",
+        "buttons": {
+            "general": "General settings",
+            "account": "My account",
+            "homes": "My homes",
+            "admin": "Administration",
+            "save": "Save changes"
+        },
+        "general": {
+            "title": "General settings",
+            "language": "Change language",
+            "theme": "Change theme",
+            "themes": [
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Yellow",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Purple",
+                    "value": "purple"
+                },
+                {
+                    "name": "Pink",
+                    "value": "pink"
+                },
+                {
+                    "name": "Black",
+                    "value": "black"
+                },
+                {
+                    "name": "White",
+                    "value": "white"
+                }
+            ]
+        },
+        "account": {
+            "title": "My account",
+            "informations": "Informations",
+            "security": "Security"
+        },
+        "homes": {
+            "title": "My homes",
+            "homes": "Homes",
+            "actions": "Actions",
+            "add": {
+                "label": "Add a home",
+                "informations": "Informations",
+                "name": "Home name",
+                "button": "Add home"
+            },
+            "edit": {
+                "label": "Edit a home",
+                "informations": "Informations",
+                "name": "Home name",
+                "button": "Edit home"
+            }
+        },
+        "admin": {
+            "title": "Administration",
+            "users": {
+                "desktop": "Users",
+                "mobile": "Users"
+            },
+            "admin": {
+                "desktop": "Admin",
+                "mobile": "Admin"
+            },
+            "actions": {
+                "desktop": "Actions",
+                "mobile": "Actions"
+            },
+            "add": {
+                "label": "Add a user",
+                "informations": "Informations",
+                "name": "Username",
+                "password": "Password",
+                "admin": "Administrator",
+                "button": "Add user"
+            },
+            "edit": {
+                "label": "Edit a user",
+                "informations": "Informations",
+                "name": "Username",
+                "password": "Password",
+                "admin": "Administrator",
+                "button": "Edit user"
+            }
+        }
+    }
+}

@@ -1,0 +1,222 @@
+{
+    "homes": [
+        "Ma maison",
+        "Les parents",
+        "Chez papi & mamie"
+    ],
+    "users": [
+        {
+            "name": "Loïc",
+            "admin": true
+        },
+        {
+            "name": "Timothé",
+            "admin": false
+        },
+        {
+            "name": "Danny",
+            "admin": false
+        }
+    ],
+    "lists": [
+        {
+            "name": "Liste de courses",
+            "shared": true,
+            "items": [
+                {
+                    "name": "Carottes",
+                    "quantity": "1kg"
+                },
+                {
+                    "name": "Pain de mie",
+                    "quantity": "1"
+                },
+                {
+                    "name": "Bouteille d'eau",
+                    "quantity": "1"
+                },
+                {
+                    "name": "Beurre",
+                    "quantity": "1 sachet"
+                },
+                {
+                    "name": "Beurre",
+                    "quantity": ""
+                },
+                {
+                    "name": "Épices",
+                    "quantity": ""
+                }
+            ]
+        },
+        {
+            "name": "Tarte aux pommes",
+            "shared": false,
+            "items": [
+                {
+                    "name": "Pommes",
+                    "quantity": "2kg"
+                },
+                {
+                    "name": "Pâte brisée",
+                    "quantity": "1"
+                },
+                {
+                    "name": "Sucre",
+                    "quantity": "100g"
+                },
+                {
+                    "name": "Cannelle",
+                    "quantity": "1 sachet"
+                },
+                {
+                    "name": "Beurre",
+                    "quantity": ""
+                },
+                {
+                    "name": "Oeufs",
+                    "quantity": ""
+                }
+            ]
+        }
+    ],
+    "recipes": [
+        {
+            "name": "Tarte aux pommes",
+            "ingredients": [
+                {
+                    "name": "Pommes",
+                    "quantity": "2kg"
+                },
+                {
+                    "name": "Pâte brisée",
+                    "quantity": "1"
+                },
+                {
+                    "name": "Sucre",
+                    "quantity": "100g"
+                },
+                {
+                    "name": "Cannelle",
+                    "quantity": "1 sachet"
+                },
+                {
+                    "name": "Beurre",
+                    "quantity": ""
+                },
+                {
+                    "name": "Oeufs",
+                    "quantity": ""
+                }
+            ]
+        },
+        {
+            "name": "Quiche lorraine",
+            "ingredients": [
+                {
+                    "name": "Pâte brisée",
+                    "quantity": "1"
+                },
+                {
+                    "name": "Lardons",
+                    "quantity": "200g"
+                },
+                {
+                    "name": "Crème fraîche",
+                    "quantity": "20cl"
+                },
+                {
+                    "name": "Oeufs",
+                    "quantity": "3"
+                },
+                {
+                    "name": "Fromage râpé",
+                    "quantity": "100g"
+                },
+                {
+                    "name": "Sel",
+                    "quantity": ""
+                },
+                {
+                    "name": "Poivre",
+                    "quantity": ""
+                }
+            ]
+        },
+        {
+            "name": "Pâtes à la bolognaise",
+            "ingredients": [
+                {
+                    "name": "Pâtes",
+                    "quantity": "500g"
+                },
+                {
+                    "name": "Viande hachée",
+                    "quantity": "300g"
+                },
+                {
+                    "name": "Tomates pelées",
+                    "quantity": "400g"
+                },
+                {
+                    "name": "Oignon",
+                    "quantity": "1"
+                },
+                {
+                    "name": "Ail",
+                    "quantity": "2 gousses"
+                },
+                {
+                    "name": "Huile d'olive",
+                    "quantity": ""
+                },
+                {
+                    "name": "Sel",
+                    "quantity": ""
+                },
+                {
+                    "name": "Poivre",
+                    "quantity": ""
+                }
+            ]
+        }
+    ],
+    "items": [
+        {
+            "name": "Carottes",
+            "quantity": "500g"
+        },
+        {
+            "name": "Pain de mie",
+            "quantity": "1"
+        },
+        {
+            "name": "Bouteille d'eau",
+            "quantity": "1"
+        },
+        {
+            "name": "Beurre",
+            "quantity": "1 sachet"
+        },
+        {
+            "name": "Pommes",
+            "quantity": "1kg"
+        },
+        {
+            "name": "Pâte brisée",
+            "quantity": "1"
+        },
+        {
+            "name": "Sucre",
+            "quantity": "50g"
+        },
+        {
+            "name": "Cannelle",
+            "quantity": ""
+        },
+        {
+            "name": "Oeufs",
+            "quantity": ""
+        }
+    ]
+}
