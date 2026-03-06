@@ -1,5 +1,5 @@
 <h1>
-  <img src="https://raw.githubusercontent.com/La-liste/frontend/refs/heads/main/icon.png" width="40" align="center" />
+  <img src="icon.png" width="40" align="center" />
   La liste - Front-end
 </h1>
 
