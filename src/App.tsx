@@ -63,12 +63,7 @@ function App() {
         <Route path="/settings/admin/add" element={isLogin ? <AppLayout><Application.AddAdminSettings /></AppLayout> : <Navigate to="/login" />} />
         <Route path="/settings/admin/edit" element={isLogin ? <AppLayout><Application.EditAdminSettings /></AppLayout> : <Navigate to="/login" />} />
         <Route path="/settings/admin/:id/edit" element={isLogin ? <AppLayout><Application.EditAdminSettings /></AppLayout> : <Navigate to="/login" />} />
-        <Route
-          path="/"
-          element={
-            needsSetup ? <Navigate to="/setup" /> : isLogin ? <Navigate to="/home" /> : <Navigate to="/login" />
-          }
-        />
+        <Route path="/" element={ needsSetup ? <Navigate to="/setup" /> : isLogin ? <Navigate to="/home" /> : <Navigate to="/login" /> } />
       </Routes>
     </BrowserRouter>
   )
