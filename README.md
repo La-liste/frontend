@@ -1,5 +1,5 @@
 <h1>
-  <img src="https://raw.githubusercontent.com/La-liste/frontend/refs/heads/main/icon.png" width="40" align="center" />
+  <img src="icon.png" width="40" align="center" />
   La liste - Front-end
 </h1>
 
@@ -23,18 +23,26 @@ La liste is an application to keep track of what you have at home and what you n
 ## Installation
 First, clone the repository
 
-```git clone https://github.com/La-liste/frontend```
+```
+git clone https://github.com/La-liste/frontend
+```
 
 Then go into its folder
 
-```cd frontend```
+```
+cd frontend
+```
 
 After that, install the packages and depedencies
 
-```npm install```
+```
+npm install
+```
 
 And finally, run the application
 
-```npx vite --force```
+```
+npx vite --force
+```
 
 (use the `--host` argument to be able to access it from other devices)
