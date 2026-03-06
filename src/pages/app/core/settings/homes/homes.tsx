@@ -62,7 +62,7 @@ return (
               </Stack>
             </Stack>
           </Stack>
-          <Divider sx={{ backgroundColor: "text.primary", mb: 2, width: isMobile ? "100%" : "85%", opacity: 0.5 }} />
+          <Divider sx={{ backgroundColor: "text.primary", mb: 1, width: isMobile ? "100%" : "85%", opacity: 0.5 }} />
         </Stack>
       ))}
 

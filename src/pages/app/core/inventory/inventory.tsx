@@ -37,7 +37,7 @@ export default function Inventory() {
   
         {items.map((item, index) => (
           <>
-          <Stack direction="row" sx={{ mt: 0, mb: 1 }} key={index}>
+          <Stack direction="row" sx={{ pb: 1 }} key={index}>
           <Stack
             width={isMobile ? "65%" : "45%"}
           >
@@ -67,7 +67,7 @@ export default function Inventory() {
               </Typography>
             </Stack>
           </Stack>
-          <Divider sx={{ backgroundColor: "text.primary", mb: 2, width: isTablet ? "100%" : "85%", opacity: 0.5 }} />
+          <Divider sx={{ backgroundColor: "text.primary", mb: 1, width: isTablet ? "100%" : "85%", opacity: 0.5 }} />
           </>
         ))}
   

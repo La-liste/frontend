@@ -95,7 +95,7 @@ export default function Recipe() {
                     </Typography>
                   </Stack>
                 </Stack>
-                <Divider sx={{ backgroundColor: "text.primary", mb: 2, width: isTablet ? "100%" : "85%", opacity: 0.5 }} />
+                <Divider sx={{ backgroundColor: "text.primary", mb: 1, width: isTablet ? "100%" : "85%", opacity: 0.5 }} />
               </Stack>
             ))}
       

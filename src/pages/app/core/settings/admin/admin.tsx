@@ -23,7 +23,7 @@ export default function AdminSettings() {
       <TitlePage text={t("settings.admin.title")} isCentered />
 
       <Stack sx={{ maxWidth: 1200, width: "100%", margin: "24px auto" }}>
-        <Stack direction="row" sx={{ mb: 1 }}>
+        <Stack direction="row">
           <Stack width={isMobile ? "35%" : "25%"}>
             <Typography variant={isMobile ? "h6" : "h5"} sx={{ minWidth: 0 }}>
               { isTablet ? t("settings.admin.users.mobile") : t("settings.admin.users.desktop") }
@@ -86,7 +86,7 @@ export default function AdminSettings() {
                 </Stack>
               </Stack>
             </Stack>
-            <Divider sx={{ backgroundColor: "text.primary", mb: 2, width: isTablet ? "100%" : "85%", opacity: 0.5 }} />
+            <Divider sx={{ backgroundColor: "text.primary", mb: 1, width: isTablet ? "100%" : "85%", opacity: 0.5 }} />
           </Stack>
         ))}
 
