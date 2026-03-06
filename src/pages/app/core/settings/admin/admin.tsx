@@ -22,67 +22,71 @@ export default function AdminSettings() {
     <Stack sx={{ maxWidth: 1200, width: "100%", margin: "0 auto", px: { xs: 1, sm: 2, md: 3 } }}>
       <TitlePage text={t("settings.admin.title")} isCentered />
 
-      <Stack sx={{ mt: 4 }}>
-        <Stack
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr) auto",
-            alignItems: "center",
-            columnGap: 2,
-            mb: 1,
-          }}
-        >
-          <Typography variant={isMobile ? "h6" : "h5"} sx={{ minWidth: 0 }}>
-            { isTablet ? t("settings.admin.users.mobile") : t("settings.admin.users.desktop") }
-          </Typography>
-          <Typography variant={isMobile ? "h6" : "h5"} sx={{ minWidth: 0 }}>
-            { isTablet ? t("settings.admin.admin.mobile") : t("settings.admin.admin.desktop") }
-          </Typography>
-          <Typography variant={isMobile ? "h6" : "h5"}> 
-            { isTablet ? t("settings.admin.actions.mobile") : t("settings.admin.actions.desktop") }
-          </Typography>
+      <Stack sx={{ maxWidth: 1200, width: "100%", margin: "24px auto" }}>
+        <Stack direction="row" sx={{ mb: 1 }}>
+          <Stack width={isMobile ? "35%" : "25%"}>
+            <Typography variant={isMobile ? "h6" : "h5"} sx={{ minWidth: 0 }}>
+              { isTablet ? t("settings.admin.users.mobile") : t("settings.admin.users.desktop") }
+            </Typography>
+          </Stack>
+          <Stack width={"30%"}>
+            <Typography variant={isMobile ? "h6" : "h5"} sx={{ minWidth: 0 }}>
+              { isTablet ? t("settings.admin.admin.mobile") : t("settings.admin.admin.desktop") }
+            </Typography>
+          </Stack>
+          <Stack>
+            <Typography variant={isMobile ? "h6" : "h5"}>
+              { isTablet ? t("settings.admin.actions.mobile") : t("settings.admin.actions.desktop") }
+            </Typography>
+          </Stack>
         </Stack>
 
-        <Divider sx={{ backgroundColor: "text.primary", height: "2.5px", mb: 2 }} />
+        <Divider sx={{ backgroundColor: "text.primary", height: "2.5px", mb: 2, width: isTablet ? "100%" : "85%" }} />
 
         {users.map((user, index) => (
-          <Stack
-            key={index}
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr) auto",
-              alignItems: "center",
-              columnGap: 2,
-              mb: 2,
-            }}
-          >
-            <Typography
-              variant={isMobile ? "h6" : "h5"}
+          <Stack key={index}>
+            <Stack
+              direction="row"
               sx={{
-                minWidth: 0,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
+                alignItems: "center",
+                pb: 1,
               }}
             >
-              {user.name}
-            </Typography>
+              <Stack width={isMobile ? "35%" : "25%"}>
+                <Typography
+                  variant={isMobile ? "h6" : "h5"}
+                  sx={{
+                    minWidth: 0,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {user.name}
+                </Typography>
+              </Stack>
 
-            <Typography
-              variant={isMobile ? "h6" : "h5"}
-              sx={{ minWidth: 0 }}
-            >
-              {user.admin ? (
-                <CheckIcon sx={{ fontSize: isMobile ? 24 : 36 }} />
-              ) : (
-                <CloseIcon sx={{ fontSize: isMobile ? 24 : 36 }} />
-              )}
-            </Typography>
+              <Stack width={"30%"}>
+                <Typography
+                  variant={isMobile ? "h6" : "h5"}
+                  sx={{ minWidth: 0 }}
+                >
+                  {user.admin ? (
+                    <CheckIcon sx={{ fontSize: isMobile ? 24 : 36 }} />
+                  ) : (
+                    <CloseIcon sx={{ fontSize: isMobile ? 24 : 36 }} />
+                  )}
+                </Typography>
+              </Stack>
 
-            <Stack direction="row" gap={1} sx={{ flexShrink: 0 }}>
-              <IconButton icon={EditIcon} action={() => navigate(`/settings/admin/${index}/edit`)} />
-              <IconButton icon={DeleteIcon} action={() => {}} />
+              <Stack>
+                <Stack direction="row" gap={1} sx={{ flexShrink: 0 }}>
+                  <IconButton icon={EditIcon} action={() => navigate(`/settings/admin/${index}/edit`)} />
+                  <IconButton icon={DeleteIcon} action={() => {}} />
+                </Stack>
+              </Stack>
             </Stack>
+            <Divider sx={{ backgroundColor: "text.primary", mb: 2, width: isTablet ? "100%" : "85%", opacity: 0.5 }} />
           </Stack>
         ))}
 

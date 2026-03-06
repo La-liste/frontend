@@ -16,54 +16,53 @@ export default function HomeSettings() {
   const homes = placeholderData.homes;
 
 return (
-  <Stack sx={{ maxWidth: 1200, width: "100%", margin: "0 auto", px: { xs: 1, sm: 2, md: 3 } }}>
+  <Stack sx={{ maxWidth: 1200, width: "100%", margin: "0 auto" }}>
     <TitlePage text={t("settings.homes.title")} isCentered />
 
-    <Stack sx={{ mt: 4 }}>
-      <Stack
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1fr) auto",
-          alignItems: "center",
-          columnGap: 2,
-          mb: 1,
-        }}
-      >
-        <Typography variant="h5" sx={{ minWidth: 0 }}>
-          {t("settings.homes.homes")}
-        </Typography>
-        <Typography variant="h5">{t("settings.homes.actions")}</Typography>
+      <Stack sx={{ maxWidth: 1200, width: "100%", margin: "24px auto" }}>
+        <Stack direction="row">
+          <Stack
+            width={isMobile ? "65%" : "45%"}
+          >
+            <Typography variant="h5" sx={{ minWidth: 0 }}>
+              {t("settings.homes.homes")}
+            </Typography>
+          </Stack>
+          <Stack>
+            <Typography variant="h5">
+              {t("settings.homes.actions")}
+            </Typography>
+        </Stack>
       </Stack>
 
-      <Divider sx={{ backgroundColor: "text.primary", height: "2.5px", mb: 2 }} />
+      <Divider sx={{ backgroundColor: "text.primary", height: "2.5px", width: isMobile ? "100%" : "85%", mb: 2 }} />
 
       {homes.map((home, index) => (
-        <Stack
-          key={index}
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) auto",
-            alignItems: "center",
-            columnGap: 2,
-            mb: 2,
-          }}
-        >
-          <Typography
-            variant={isMobile ? "h6" : "h5"}
-            sx={{
-              minWidth: 0,
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {home}
-          </Typography>
-
-          <Stack direction="row" gap={1} sx={{ flexShrink: 0 }}>
-            <IconButton icon={EditIcon} action={() => navigate(`/settings/homes/${index}/edit`)} />
-            <IconButton icon={DeleteIcon} action={() => {}} />
+        <Stack sx={{ maxWidth: 1200, width: "100%", margin: "6px auto 0px" }} key={index}>
+          <Stack direction="row" alignItems={"center"} sx={{ pb: 1 }}>
+            <Stack
+              width={isMobile ? "65%" : "45%"}
+            >
+              <Typography
+                variant={isMobile ? "h6" : "h5"}
+                sx={{
+                  minWidth: 0,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {home}
+              </Typography>
+            </Stack>
+            <Stack>
+              <Stack direction="row" gap={1}>
+                <IconButton icon={EditIcon} action={() => navigate(`/settings/homes/${index}/edit`)} />
+                <IconButton icon={DeleteIcon} action={() => {}} />
+              </Stack>
+            </Stack>
           </Stack>
+          <Divider sx={{ backgroundColor: "text.primary", mb: 2, width: isMobile ? "100%" : "85%", opacity: 0.5 }} />
         </Stack>
       ))}
 

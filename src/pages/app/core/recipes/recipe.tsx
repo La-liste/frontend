@@ -36,68 +36,66 @@ export default function Recipe() {
       <Stack sx={{ mt: 4, maxWidth: 1200, width: "100%", margin: "24px auto", px: { xs: 1, sm: 2, md: 3 } }}>
             {recipe && (
                 <>
-                    <Stack
-                      sx={{
-                          display: "grid",
-                        gridTemplateColumns: "24px minmax(0, 1fr) auto",
-                          alignItems: "center",
-                          columnGap: 2,
-                          mb: 1,
-                      }}
-                      >
-                      <span />
-                      <Typography variant="h5" sx={{ minWidth: 0 }}>
+                    <Stack direction="row" sx={{ mb: 1 }}>
+                      <Stack width="24px" />
+                      <Stack width={isMobile ? "55%" : "40%"}>
+                        <Typography variant="h5" sx={{ minWidth: 0 }}>
                           {isMobile ? t("recipes.ingredients.mobile") : t("recipes.ingredients.desktop")}
-                      </Typography>
-                      <Typography variant="h5">
-                        {isMobile ? t("recipes.quantity.mobile") : t("recipes.quantity.desktop")}
-                      </Typography>
+                        </Typography>
+                      </Stack>
+                      <Stack>
+                        <Typography variant="h5">
+                          {isMobile ? t("recipes.quantity.mobile") : t("recipes.quantity.desktop")}
+                        </Typography>
+                      </Stack>
                     </Stack>
             
-                    <Divider sx={{ backgroundColor: "text.primary", height: "2.5px", mb: 2 }} />
+                    <Divider sx={{ backgroundColor: "text.primary", height: "2.5px", mb: 2, width: isTablet ? "100%" : "85%" }} />
                 </>
             )}
       
             {recipe && recipe.ingredients.map((item: RecipeIngredient, index: number) => (
-              <Stack
-                key={index}
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: "24px minmax(0, 1fr) auto",
-                  alignItems: "center",
-                  columnGap: 2,
-                  mb: 2,
-                }}
-              >
-                <Stack sx={{ width: 24, alignItems: "center", justifyContent: "center" }}>
-                  {!isItemInList(item.name) ? <WarningIcon /> : null}
-                </Stack>
-
-                <Typography
-                  variant={isMobile ? "h6" : "h5"}
+              <Stack key={index}>
+                <Stack
+                  direction="row"
                   sx={{
-                    minWidth: 0,
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
+                    alignItems: "center",
+                    pb: 1,
                   }}
                 >
-                  {item.name}
-                </Typography>
-      
-                <Stack direction="row" gap={1} sx={{ flexShrink: 0 }}>
-                  <Typography
-                    variant={isMobile ? "h6" : "h5"}
-                    sx={{
-                      minWidth: 0,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {item.quantity}
-                  </Typography>
+                  <Stack sx={{ width: "24px", alignItems: "center", justifyContent: "center" }}>
+                    {!isItemInList(item.name) ? <WarningIcon /> : null}
+                  </Stack>
+
+                  <Stack width={isMobile ? "55%" : "40%"}>
+                    <Typography
+                      variant={isMobile ? "h6" : "h5"}
+                      sx={{
+                        minWidth: 0,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {item.name}
+                    </Typography>
+                  </Stack>
+
+                  <Stack>
+                    <Typography
+                      variant={isMobile ? "h6" : "h5"}
+                      sx={{
+                        minWidth: 0,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {item.quantity}
+                    </Typography>
+                  </Stack>
                 </Stack>
+                <Divider sx={{ backgroundColor: "text.primary", mb: 2, width: isTablet ? "100%" : "85%", opacity: 0.5 }} />
               </Stack>
             ))}
       
