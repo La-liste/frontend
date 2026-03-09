@@ -20,7 +20,10 @@ La liste is an application to keep track of what you have at home and what you n
 - Set permissions for users
 - Assign users to homes
 
-## Installation
+## Requirements
+- [NodeJS](https://nodejs.org)
+
+## Running or building the project
 First, clone the repository
 
 ```
@@ -39,10 +42,16 @@ After that, install the packages and depedencies
 npm install
 ```
 
-And finally, run the application
+And finally, run the project
 
 ```
 npx vite --force
 ```
 
 (use the `--host` argument to be able to access it from other devices)
+<br /><br />
+Or if you want to build the project for production
+
+```
+npx vite build
+```
