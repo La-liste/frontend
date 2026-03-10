@@ -24,27 +24,27 @@
             "shared": true,
             "items": [
                 {
-                    "name": "Carottes",
+                    "name": "en:carrot",
                     "quantity": "1kg"
                 },
                 {
-                    "name": "Pain de mie",
+                    "name": "en:bread",
                     "quantity": "1"
                 },
                 {
-                    "name": "Bouteille d'eau",
+                    "name": "en:water",
                     "quantity": "1"
                 },
                 {
-                    "name": "Beurre",
+                    "name": "en:butter",
                     "quantity": "1 sachet"
                 },
                 {
-                    "name": "Beurre",
+                    "name": "en:butter",
                     "quantity": ""
                 },
                 {
-                    "name": "Épices",
+                    "name": "en:spice",
                     "quantity": ""
                 }
             ]
@@ -54,27 +54,27 @@
             "shared": false,
             "items": [
                 {
-                    "name": "Pommes",
+                    "name": "en:apple",
                     "quantity": "2kg"
                 },
                 {
-                    "name": "Pâte brisée",
+                    "name": "en:pastry",
                     "quantity": "1"
                 },
                 {
-                    "name": "Sucre",
+                    "name": "en:sugar",
                     "quantity": "100g"
                 },
                 {
-                    "name": "Cannelle",
+                    "name": "en:cinnamon",
                     "quantity": "1 sachet"
                 },
                 {
-                    "name": "Beurre",
+                    "name": "en:butter",
                     "quantity": ""
                 },
                 {
-                    "name": "Oeufs",
+                    "name": "en:egg",
                     "quantity": ""
                 }
             ]
@@ -85,27 +85,27 @@
             "name": "Tarte aux pommes",
             "ingredients": [
                 {
-                    "name": "Pommes",
+                    "name": "en:apple",
                     "quantity": "2kg"
                 },
                 {
-                    "name": "Pâte brisée",
+                    "name": "en:pastry",
                     "quantity": "1"
                 },
                 {
-                    "name": "Sucre",
+                    "name": "en:sugar",
                     "quantity": "100g"
                 },
                 {
-                    "name": "Cannelle",
+                    "name": "en:cinnamon",
                     "quantity": "1 sachet"
                 },
                 {
-                    "name": "Beurre",
+                    "name": "en:butter",
                     "quantity": ""
                 },
                 {
-                    "name": "Oeufs",
+                    "name": "en:egg",
                     "quantity": ""
                 }
             ]
@@ -114,31 +114,31 @@
             "name": "Quiche lorraine",
             "ingredients": [
                 {
-                    "name": "Pâte brisée",
+                    "name": "en:pastry",
                     "quantity": "1"
                 },
                 {
-                    "name": "Lardons",
+                    "name": "en:lardon",
                     "quantity": "200g"
                 },
                 {
-                    "name": "Crème fraîche",
+                    "name": "en:creme-fraiche",
                     "quantity": "20cl"
                 },
                 {
-                    "name": "Oeufs",
+                    "name": "en:egg",
                     "quantity": "3"
                 },
                 {
-                    "name": "Fromage râpé",
+                    "name": "en:grated-cheese",
                     "quantity": "100g"
                 },
                 {
-                    "name": "Sel",
+                    "name": "en:salt",
                     "quantity": ""
                 },
                 {
-                    "name": "Poivre",
+                    "name": "en:black-pepper",
                     "quantity": ""
                 }
             ]
@@ -147,35 +147,35 @@
             "name": "Pâtes à la bolognaise",
             "ingredients": [
                 {
-                    "name": "Pâtes",
+                    "name": "en:pasta",
                     "quantity": "500g"
                 },
                 {
-                    "name": "Viande hachée",
+                    "name": "en:meat",
                     "quantity": "300g"
                 },
                 {
-                    "name": "Tomates pelées",
+                    "name": "en:peeled-tomatoes",
                     "quantity": "400g"
                 },
                 {
-                    "name": "Oignon",
+                    "name": "en:onion",
                     "quantity": "1"
                 },
                 {
-                    "name": "Ail",
+                    "name": "en:garlic",
                     "quantity": "2 gousses"
                 },
                 {
-                    "name": "Huile d'olive",
+                    "name": "en:olive-oil",
                     "quantity": ""
                 },
                 {
-                    "name": "Sel",
+                    "name": "en:salt",
                     "quantity": ""
                 },
                 {
-                    "name": "Poivre",
+                    "name": "en:black-pepper",
                     "quantity": ""
                 }
             ]
@@ -183,39 +183,39 @@
     ],
     "items": [
         {
-            "name": "Carottes",
-            "quantity": "500g"
+            "name": "en:carrot",
+            "quantity": "500"
         },
         {
-            "name": "Pain de mie",
+            "name": "en:bread",
             "quantity": "1"
         },
         {
-            "name": "Bouteille d'eau",
+            "name": "en:water",
             "quantity": "1"
         },
         {
-            "name": "Beurre",
-            "quantity": "1 sachet"
-        },
-        {
-            "name": "Pommes",
-            "quantity": "1kg"
-        },
-        {
-            "name": "Pâte brisée",
+            "name": "en:butter",
             "quantity": "1"
         },
         {
-            "name": "Sucre",
-            "quantity": "50g"
+            "name": "en:apple",
+            "quantity": "1"
         },
         {
-            "name": "Cannelle",
+            "name": "en:pastry",
+            "quantity": "1"
+        },
+        {
+            "name": "en:sugar",
+            "quantity": "50"
+        },
+        {
+            "name": "en:cinnamon",
             "quantity": ""
         },
         {
-            "name": "Oeufs",
+            "name": "en:egg",
             "quantity": ""
         }
     ]

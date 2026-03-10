@@ -2,6 +2,8 @@ export { default as TitleBig } from "./title/TitleBig";
 export { default as TitleSmall } from "./title/TitleSmall";
 export { default as TitlePage } from "./title/TitlePage";
 export { default as TextInput } from "./inputs/TextInput";
+export { default as AutocompleteInput } from "./inputs/AutocompleteInput";
+export { default as NumberInput } from "./inputs/NumberInput";
 export { default as PasswordInput } from "./inputs/PasswordInput";
 export { default as DefaultButton } from "./buttons/DefaultButton";
 export { default as BigButton } from "./buttons/BigButton";

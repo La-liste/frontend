@@ -4,6 +4,11 @@ import { useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { Setup, Application } from './pages'
 import { AppLayout } from './components';
+import { getIngredientsData } from "./services/store/Ingredients";
+
+getIngredientsData().catch((err) => {
+  console.error("Ingredients preload failed: ", err);
+});
 
 function App() {
   const [needsSetup, setNeedsSetup] = useState(false);

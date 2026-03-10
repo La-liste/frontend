@@ -1,17 +1,37 @@
+import { useState, useEffect } from "react";
 import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/material";
 import { TitlePage, DefaultButton } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
+import { getIngredientsData } from "../../../../services/store/Ingredients";
+import type { IngredientTaxonomy } from "../../../../services/store/Ingredients";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function Inventory() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const items = placeholderData.items;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+  const [idToName, setIdToName] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      const data: IngredientTaxonomy = await getIngredientsData();
+      const lang = i18n.language.split("-")[0];
+      const map: Record<string, string> = {};
+      Object.entries(data).forEach(([id, entry]) => {
+        const name = entry.name?.[lang] || entry.name?.en || entry.name?.fr;
+        if (name) map[id] = name;
+      });
+      if (!cancelled) setIdToName(map);
+    };
+    load();
+    return () => { cancelled = true; };
+  }, [i18n.language]);
 
   return (
     <>
@@ -50,7 +70,7 @@ export default function Inventory() {
                 whiteSpace: "nowrap",
               }}
             >
-              {item.name}
+              {idToName[item.name] ?? item.name}
             </Typography>
           </Stack>
           <Stack>

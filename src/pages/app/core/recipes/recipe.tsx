@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/material";
 import { TitlePage, DefaultButton, DefaultSelect } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
+import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
 import EditIcon from "@mui/icons-material/Edit";
 import WarningIcon from '@mui/icons-material/Warning';
 import AddIcon from "@mui/icons-material/Add";
@@ -12,7 +13,7 @@ import { useTranslation } from "react-i18next";
 type RecipeIngredient = { name: string; quantity: string };
 
 export default function Recipe() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
   const recipe = id ? placeholderData.recipes[Number(id)] : undefined;
@@ -20,10 +21,23 @@ export default function Recipe() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
-  const normalize = (s: string) => s.trim().toLowerCase();
+  const [idToName, setIdToName] = useState<Record<string, string>>(
+    () => buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0]).idToName
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      const data = await getIngredientsData();
+      if (!cancelled) setIdToName(buildMaps(data, i18n.language.split("-")[0]).idToName);
+    };
+    load();
+    return () => { cancelled = true; };
+  }, [i18n.language]);
+
   const availableItems = placeholderData.items;
-  const isItemInList = (ingredientName: string) =>
-    availableItems?.some((inventoryItem) => normalize(inventoryItem.name) === normalize(ingredientName)) ?? false;
+  const isItemInList = (ingredientId: string) =>
+    availableItems.some((inventoryItem) => inventoryItem.name === ingredientId);
   const hasMissingItems = recipe?.ingredients.some((item: RecipeIngredient) => !isItemInList(item.name)) ?? false;
 
   const lists = placeholderData.lists.map((listItem) => listItem.name);
@@ -63,7 +77,7 @@ export default function Recipe() {
                     pb: 1,
                   }}
                 >
-                  <Stack sx={{ width: "24px", alignItems: "center", justifyContent: "center" }}>
+                  <Stack sx={{ width: "24px", alignItems: "center", justifyContent: "center", paddingRight: 2 }}>
                     {!isItemInList(item.name) ? <WarningIcon /> : null}
                   </Stack>
 
@@ -77,7 +91,7 @@ export default function Recipe() {
                         whiteSpace: "nowrap",
                       }}
                     >
-                      {item.name}
+                      {idToName[item.name] ?? item.name}
                     </Typography>
                   </Stack>
 

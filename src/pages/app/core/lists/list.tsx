@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { Stack, useTheme, useMediaQuery } from "@mui/material";
 import { TitlePage, DefaultButton, DefaultCheckbox } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
+import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
 import CheckIcon from "@mui/icons-material/Check";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -8,12 +10,25 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function List() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
   const list = placeholderData.lists[id];
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [idToName, setIdToName] = useState<Record<string, string>>(
+    () => buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0]).idToName
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      const data = await getIngredientsData();
+      if (!cancelled) setIdToName(buildMaps(data, i18n.language.split("-")[0]).idToName);
+    };
+    load();
+    return () => { cancelled = true; };
+  }, [i18n.language]);
 
   return (
     <>
@@ -21,7 +36,7 @@ export default function List() {
 
       <Stack gap={2} sx={{ maxWidth: 400, width: "100%", margin: "36px auto", alignItems: "flex-start" }}>
         {list && list.items.map((item, index) => (
-          <DefaultCheckbox key={index} label={`${item.name} ${item.quantity}`} cross />
+          <DefaultCheckbox key={index} label={`${idToName[item.name] ?? item.name} ${item.quantity}`} cross />
         ))}
       </Stack>
 

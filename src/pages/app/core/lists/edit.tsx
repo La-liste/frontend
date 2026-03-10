@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { TitlePage, TextInput, DefaultButton, DefaultCheckbox } from "../../../../components";
+import { TitlePage, TextInput, AutocompleteInput, DefaultButton, DefaultCheckbox } from "../../../../components";
+import { getIngredientsData, getIngredientsDataSync, buildMaps, normalize } from "../../../../services/store/Ingredients";
+import type { MapsState } from "../../../../services/store/Ingredients";
 import placeholderData from "../../../../data/placeholder.json";
 import CheckIcon from "@mui/icons-material/Check";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,7 +12,7 @@ type ItemRow = { name: string; quantity: string };
 const createEmptyItem = (): ItemRow => ({ name: "", quantity: "" });
 
 export default function ListEdit() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
   const list = id ? placeholderData.lists[Number(id)] : undefined;
@@ -19,6 +21,21 @@ export default function ListEdit() {
 
   const [name, setName] = useState(list?.name ?? "");
   const [shared, setShared] = useState(list?.shared ?? false);
+
+  const [maps, setMaps] = useState<MapsState>(() =>
+    buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0])
+  );
+  const { opts: options, idToName, nameToId } = maps;
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      const data = await getIngredientsData();
+      if (!cancelled) setMaps(buildMaps(data, i18n.language.split("-")[0]));
+    };
+    load();
+    return () => { cancelled = true; };
+  }, [i18n.language]);
 
   const [items, setItems] = useState<ItemRow[]>([
     ...(list?.items ?? []).map((item) => ({
@@ -96,14 +113,22 @@ export default function ListEdit() {
                   variant={isMobile ? "h6" : "h5"}
                   sx={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
                 >
-                  <TextInput
+                  <AutocompleteInput
                     placeholder={t("lists.placeholders.item")}
-                    value={item.name}
+                    value={idToName[item.name] ?? item.name}
                     variant={"standard"}
                     type={"small"}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleItemChange(index, "name", e.target.value)
-                    }
+                    options={options}
+                    strict
+                    onBlur={() => {
+                      if (!item.name.trim()) return;
+                      const displayValue = idToName[item.name] ?? item.name;
+                      if (!displayValue.trim()) return;
+                      const match = options.find((o) => normalize(o) === normalize(displayValue));
+                      const matchId = match ? (nameToId[normalize(match)] ?? match) : "";
+                      handleItemChange(index, "name", matchId);
+                    }}
+                    onChange={(newValue) => handleItemChange(index, "name", newValue)}
                   />
                 </Typography>
 
