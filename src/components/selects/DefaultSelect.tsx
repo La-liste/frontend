@@ -20,7 +20,7 @@ export default function DefaultSelect({ label, variant, value, setValue, onChang
             label={label}
             variant={variant}
             size={isMobile ? "small" : "medium"}
-            onChange={(e) => onChange ? onChange : handleChange(e)}
+            onChange={(e) => onChange ? onChange(e as any) : handleChange(e)}
             MenuProps={{
                 PaperProps: {
                     sx: {

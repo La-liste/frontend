@@ -20,7 +20,7 @@ export default function TextInput({ placeholder, value, variant, type, onChange,
             sx={{
                 width: type === "small" ? (isMobile ? "8rem" : isTablet ? "10rem" : "18rem") : (isMobile ? "20rem" : isTablet ? "22rem" : "32rem"),
                 "& .MuiInputBase-input": {
-                    fontSize: type === "big" ? "2rem" : undefined,
+                    fontSize: type === "big" ? isTablet ? "1.6rem" : "2rem" : undefined,
                 },
             }}
         />

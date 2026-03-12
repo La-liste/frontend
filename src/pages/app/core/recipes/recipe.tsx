@@ -10,7 +10,7 @@ import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-type RecipeIngredient = { name: string; quantity: string };
+type RecipeIngredient = { name: string; quantity: string, unit: string };
 
 export default function Recipe() {
   const { t, i18n } = useTranslation();
@@ -105,7 +105,7 @@ export default function Recipe() {
                         whiteSpace: "nowrap",
                       }}
                     >
-                      {item.quantity}
+                      {item.quantity}{item.unit !== "none" ? item.unit : ""}
                     </Typography>
                   </Stack>
                 </Stack>

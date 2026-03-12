@@ -25,27 +25,33 @@
             "items": [
                 {
                     "name": "en:carrot",
-                    "quantity": "1kg"
+                    "quantity": "1",
+                    "unit": "kg"
                 },
                 {
                     "name": "en:bread",
-                    "quantity": "1"
+                    "quantity": "1",
+                    "unit": "none"
                 },
                 {
                     "name": "en:water",
-                    "quantity": "1"
+                    "quantity": "1",
+                    "unit": "L"
                 },
                 {
                     "name": "en:butter",
-                    "quantity": "1 sachet"
+                    "quantity": "1",
+                    "unit": "none"
                 },
                 {
                     "name": "en:butter",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 },
                 {
                     "name": "en:spice",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 }
             ]
         },
@@ -55,27 +61,33 @@
             "items": [
                 {
                     "name": "en:apple",
-                    "quantity": "2kg"
+                    "quantity": "2",
+                    "unit": "kg"
                 },
                 {
                     "name": "en:pastry",
-                    "quantity": "1"
+                    "quantity": "1",
+                    "unit": "none"
                 },
                 {
                     "name": "en:sugar",
-                    "quantity": "100g"
+                    "quantity": "100",
+                    "unit": "g"
                 },
                 {
                     "name": "en:cinnamon",
-                    "quantity": "1 sachet"
+                    "quantity": "1",
+                    "unit": "none"
                 },
                 {
                     "name": "en:butter",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 },
                 {
                     "name": "en:egg",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 }
             ]
         }
@@ -86,27 +98,33 @@
             "ingredients": [
                 {
                     "name": "en:apple",
-                    "quantity": "2kg"
+                    "quantity": "2",
+                    "unit": "kg"
                 },
                 {
                     "name": "en:pastry",
-                    "quantity": "1"
+                    "quantity": "1",
+                    "unit": "none"
                 },
                 {
                     "name": "en:sugar",
-                    "quantity": "100g"
+                    "quantity": "100",
+                    "unit": "g"
                 },
                 {
                     "name": "en:cinnamon",
-                    "quantity": "1 sachet"
+                    "quantity": "1",
+                    "unit": "none"
                 },
                 {
                     "name": "en:butter",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 },
                 {
                     "name": "en:egg",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 }
             ]
         },
@@ -115,31 +133,38 @@
             "ingredients": [
                 {
                     "name": "en:pastry",
-                    "quantity": "1"
+                    "quantity": "1",
+                    "unit": "none"
                 },
                 {
                     "name": "en:lardon",
-                    "quantity": "200g"
+                    "quantity": "200",
+                    "unit": "g"
                 },
                 {
                     "name": "en:creme-fraiche",
-                    "quantity": "20cl"
+                    "quantity": "20",
+                    "unit": "cL"
                 },
                 {
                     "name": "en:egg",
-                    "quantity": "3"
+                    "quantity": "3",
+                    "unit": "none"
                 },
                 {
                     "name": "en:grated-cheese",
-                    "quantity": "100g"
+                    "quantity": "100",
+                    "unit": "g"
                 },
                 {
                     "name": "en:salt",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 },
                 {
                     "name": "en:black-pepper",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 }
             ]
         },
@@ -148,35 +173,43 @@
             "ingredients": [
                 {
                     "name": "en:pasta",
-                    "quantity": "500g"
+                    "quantity": "500",
+                    "unit": "g"
                 },
                 {
                     "name": "en:meat",
-                    "quantity": "300g"
+                    "quantity": "300",
+                    "unit": "g"
                 },
                 {
                     "name": "en:peeled-tomatoes",
-                    "quantity": "400g"
+                    "quantity": "400",
+                    "unit": "g"
                 },
                 {
                     "name": "en:onion",
-                    "quantity": "1"
+                    "quantity": "1",
+                    "unit": "none"
                 },
                 {
                     "name": "en:garlic",
-                    "quantity": "2 gousses"
+                    "quantity": "2",
+                    "unit": "none"
                 },
                 {
                     "name": "en:olive-oil",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 },
                 {
                     "name": "en:salt",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 },
                 {
                     "name": "en:black-pepper",
-                    "quantity": ""
+                    "quantity": "",
+                    "unit": "none"
                 }
             ]
         }
@@ -184,39 +217,48 @@
     "items": [
         {
             "name": "en:carrot",
-            "quantity": "500"
+            "quantity": "500",
+            "unit": "g"
         },
         {
             "name": "en:bread",
-            "quantity": "1"
+            "quantity": "1",
+            "unit": "none"
         },
         {
             "name": "en:water",
-            "quantity": "1"
+            "quantity": "1",
+            "unit": "L"
         },
         {
             "name": "en:butter",
-            "quantity": "1"
+            "quantity": "1",
+            "unit": "none"
         },
         {
             "name": "en:apple",
-            "quantity": "1"
+            "quantity": "1",
+            "unit": "kg"
         },
         {
             "name": "en:pastry",
-            "quantity": "1"
+            "quantity": "1",
+            "unit": "none"
         },
         {
             "name": "en:sugar",
-            "quantity": "50"
+            "quantity": "50",
+            "unit": "g"
         },
         {
             "name": "en:cinnamon",
-            "quantity": ""
+            "quantity": "",
+            "unit": "none"
         },
         {
             "name": "en:egg",
-            "quantity": ""
+            "quantity": "",
+            "unit": "none"
         }
     ]
 }

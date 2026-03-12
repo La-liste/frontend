@@ -30,7 +30,7 @@ export default function ListButton({ label, items, isShared, action }: { label: 
         <Stack sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "0.25rem" }}>
         {items.slice(0, 2).map((item, index) => (
             <Typography key={index} variant="body2">
-                - {item.name} {item.quantity}
+                - {item.name} {item.quantity}{item.unit !== "none" ? item.unit : ""}
             </Typography>
         ))}
         {items.length > 2 && <Typography variant="body2">...</Typography>}

@@ -72,7 +72,8 @@
         "save": "Enregistrer l'inventaire",
         "placeholders": {
             "item": "Élément...",
-            "quantity": "Quantité..."
+            "quantity": "Quantité...",
+            "none": "Aucune"
         }
     },
     "recipes": {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { TitlePage, TextInput, AutocompleteInput, DefaultButton } from "../../../../components";
+import { Stack } from "@mui/material";
+import { TitlePage, TextInput, NumberInput, AutocompleteInput, DefaultButton, DefaultSelect } from "../../../../components";
 import { getIngredientsData, getIngredientsDataSync, buildMaps, normalize } from "../../../../services/store/Ingredients";
 import type { MapsState } from "../../../../services/store/Ingredients";
 import placeholderData from "../../../../data/placeholder.json";
@@ -8,16 +8,14 @@ import CheckIcon from "@mui/icons-material/Check";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-type ItemRow = { name: string; quantity: string };
-const createEmptyItem = (): ItemRow => ({ name: "", quantity: "" });
+type ItemRow = { name: string; quantity: string; unit: string };
+const createEmptyItem = (): ItemRow => ({ name: "", quantity: "", unit: "none" });
 
 export default function RecipeEdit() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
   const recipe = id ? placeholderData.recipes[Number(id)] : undefined;
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [name, setName] = useState(recipe?.name ?? "");
 
@@ -40,11 +38,14 @@ export default function RecipeEdit() {
     ...(recipe?.ingredients ?? []).map((item) => ({
       name: item.name ?? "",
       quantity: String(item.quantity ?? ""),
+      unit: item.unit ?? "none",
     })),
     createEmptyItem(),
   ]);
 
-  const handleItemChange = (index: number, field: "name" | "quantity", value: string) => {
+  const units = [t("inventory.placeholders.none"), "g", "kg", "L", "cL", "mL"];
+
+  const handleItemChange = (index: number, field: "name" | "quantity" | "unit", value: string) => {
     setItems((prev) => {
       const next = prev.map((item, i) => (i === index ? { ...item, [field]: value } : item));
 
@@ -57,8 +58,8 @@ export default function RecipeEdit() {
     });
   };
 
-  const isEmptyItem = (item: { name: string; quantity: string }) =>
-    item.name.trim() === "" && item.quantity.trim() === "";
+  const isEmptyItem = (item: { name: string; quantity: string; unit: string }) =>
+    item.name.trim() === "" && item.quantity.trim() === "" && (item.unit === "none" || item.unit.trim() === "");
 
   const handleRowBlur = (index: number, e: React.FocusEvent<HTMLDivElement>) => {
     const nextFocused = e.relatedTarget as Node | null;
@@ -102,17 +103,13 @@ export default function RecipeEdit() {
                 onBlur={(e) => handleRowBlur(index, e)}
                 sx={{
                   display: "grid",
-                  gridTemplateColumns: "minmax(0, 1fr) auto",
+                  gridTemplateColumns: "minmax(0, 1fr) auto auto",
                   alignItems: "center",
-                  columnGap: 2,
+                  columnGap: { xs: 1, sm: 2 },
                   mb: 2,
                 }}
               >
-                <Typography
-                  variant={isMobile ? "h6" : "h5"}
-                  sx={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
-                >
-                  <AutocompleteInput
+                <AutocompleteInput
                     placeholder={t("recipes.placeholders.ingredient")}
                     value={idToName[item.name] ?? item.name}
                     variant={"standard"}
@@ -129,15 +126,23 @@ export default function RecipeEdit() {
                     }}
                     onChange={(newValue) => handleItemChange(index, "name", newValue)}
                   />
-                </Typography>
 
-                <TextInput
+                <NumberInput
                   placeholder={t("recipes.placeholders.quantity")}
                   value={item.quantity}
                   variant={"standard"}
                   type={"small"}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     handleItemChange(index, "quantity", e.target.value)
+                  }
+                />
+
+                <DefaultSelect
+                  value={item.unit === "none" ? t("inventory.placeholders.none") : item.unit}
+                  variant={"standard"}
+                  options={units}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleItemChange(index, "unit", e.target.value)
                   }
                 />
               </Stack>

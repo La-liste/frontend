@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { TitlePage, NumberInput, DefaultButton, AutocompleteInput } from "../../../../components";
+import { Stack } from "@mui/material";
+import { TitlePage, NumberInput, DefaultButton, AutocompleteInput, DefaultSelect } from "../../../../components";
 import { getIngredientsData, getIngredientsDataSync } from "../../../../services/store/Ingredients";
 import type { IngredientTaxonomy } from "../../../../services/store/Ingredients";
 import placeholderData from "../../../../data/placeholder.json";
@@ -8,14 +8,14 @@ import CheckIcon from "@mui/icons-material/Check";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-type ItemRow = { id: string; name: string; quantity: string };
+type ItemRow = { id: string; name: string; quantity: string; unit: string };
 type IngredientTaxonomyEntry = {
   name?: Record<string, string>;
 };
 type MapsState = { opts: string[]; idToName: Record<string, string>; nameToId: Record<string, string> };
 
 let _idCounter = 0;
-const createEmptyItem = (): ItemRow => ({ id: `item-${++_idCounter}`, name: "", quantity: "" });
+const createEmptyItem = (): ItemRow => ({ id: `item-${++_idCounter}`, name: "", quantity: "", unit: "none" });
 
 function normalize(s: string): string {
   return s
@@ -45,8 +45,6 @@ function buildMaps(data: IngredientTaxonomy | null, lang: string): MapsState {
 export default function InventoryEdit() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [maps, setMaps] = useState<MapsState>(() =>
     buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0])
   );
@@ -57,9 +55,12 @@ export default function InventoryEdit() {
       id: `item-${++_idCounter}`,
       name: item.name ?? "",
       quantity: String(item.quantity ?? ""),
+      unit: item.unit ?? "none",
     })),
     createEmptyItem(),
   ]);
+
+  const units = [t("inventory.placeholders.none"), "g", "kg", "L", "cL", "mL"];
 
   useEffect(() => {
     let cancelled = false;
@@ -75,7 +76,7 @@ export default function InventoryEdit() {
     return () => { cancelled = true; }
   }, [i18n.language]);
 
-  const handleItemChange = (index: number, field: "name" | "quantity", value: string) => {
+  const handleItemChange = (index: number, field: "name" | "quantity" | "unit", value: string) => {
     setItems((prev) => {
       const next = prev.map((item, i) =>
         i === index ? { ...item, [field]: value } : item
@@ -86,11 +87,12 @@ export default function InventoryEdit() {
     });
   };
 
-  const isEmptyItem = (item: { name: string; quantity: string | number }) => {
+  const isEmptyItem = (item: { name: string; quantity: string | number; unit: string }) => {
     const nameEmpty = String(item.name ?? "").trim() === "";
     const quantityEmpty = String(item.quantity ?? "").trim() === "";
+    const unitEmpty = String(item.unit ?? "").trim() === "" || item.unit === "none";
 
-    return nameEmpty && quantityEmpty;
+    return nameEmpty && quantityEmpty && unitEmpty;
   };
 
   return (
@@ -103,17 +105,13 @@ export default function InventoryEdit() {
             key={item.id}
             sx={{
               display: "grid",
-              gridTemplateColumns: "minmax(0, 1fr) auto",
+              gridTemplateColumns: "minmax(0, 1fr) auto auto",
               alignItems: "center",
-              columnGap: 2,
+              columnGap: { xs: 1, sm: 2 },
               mb: 2,
             }}
           >
-            <Typography
-              variant={isMobile ? "h6" : "h5"}
-              sx={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
-            >
-              <AutocompleteInput
+            <AutocompleteInput
                 placeholder={t("inventory.placeholders.item")}
                 value={idToName[item.name] ?? item.name}
                 variant={"standard"}
@@ -130,7 +128,6 @@ export default function InventoryEdit() {
                 }}
                 onChange={(newValue) => handleItemChange(index, "name", newValue)}
               />
-            </Typography>
 
             <NumberInput
               placeholder={t("inventory.placeholders.quantity")}
@@ -139,6 +136,15 @@ export default function InventoryEdit() {
               type={"small"}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleItemChange(index, "quantity", e.target.value)
+              }
+            />
+
+            <DefaultSelect
+              value={item.unit === "none" ? t("inventory.placeholders.none") : item.unit}
+              variant={"standard"}
+              options={units}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleItemChange(index, "unit", e.target.value)
               }
             />
           </Stack>

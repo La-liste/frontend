@@ -36,7 +36,7 @@ export default function List() {
 
       <Stack gap={2} sx={{ maxWidth: 400, width: "100%", margin: "36px auto", alignItems: "flex-start" }}>
         {list && list.items.map((item, index) => (
-          <DefaultCheckbox key={index} label={`${idToName[item.name] ?? item.name} ${item.quantity}`} cross />
+          <DefaultCheckbox key={index} label={`${idToName[item.name] ?? item.name} ${item.quantity}${item.unit !== "none" ? item.unit : ""}`} cross />
         ))}
       </Stack>
 

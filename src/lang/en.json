@@ -72,7 +72,8 @@
         "save": "Save inventory",
         "placeholders": {
             "item": "Item...",
-            "quantity": "Quantity..."
+            "quantity": "Quantity...",
+            "none": "None"
         }
     },
     "recipes": {

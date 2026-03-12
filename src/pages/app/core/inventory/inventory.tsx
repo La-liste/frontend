@@ -83,7 +83,7 @@ export default function Inventory() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.quantity}
+                {item.quantity}{item.unit !== "none" ? item.unit : ""}
               </Typography>
             </Stack>
           </Stack>

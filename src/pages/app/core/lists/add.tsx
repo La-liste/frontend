@@ -1,20 +1,18 @@
 import { useState, useEffect } from "react";
-import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { TextInput, AutocompleteInput, DefaultButton, DefaultCheckbox } from "../../../../components";
+import { Stack } from "@mui/material";
+import { TextInput, NumberInput, AutocompleteInput, DefaultButton, DefaultCheckbox, DefaultSelect } from "../../../../components";
 import { getIngredientsData, getIngredientsDataSync, buildMaps, normalize } from "../../../../services/store/Ingredients";
 import type { MapsState } from "../../../../services/store/Ingredients";
 import CheckIcon from "@mui/icons-material/Check";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-type ItemRow = { name: string; quantity: string };
-const createEmptyItem = (): ItemRow => ({ name: "", quantity: "" });
+type ItemRow = { name: string; quantity: string; unit: string };
+const createEmptyItem = (): ItemRow => ({ name: "", quantity: "", unit: "none" });
 
 export default function ListAdd() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [name, setName] = useState("");
 
@@ -37,7 +35,9 @@ export default function ListAdd() {
     createEmptyItem(),
   ]);
 
-  const handleItemChange = (index: number, field: "name" | "quantity", value: string) => {
+  const units = [t("inventory.placeholders.none"), "g", "kg", "L", "cL", "mL"];
+
+  const handleItemChange = (index: number, field: "name" | "quantity" | "unit", value: string) => {
     setItems((prev) => {
       const next = prev.map((item, i) => (i === index ? { ...item, [field]: value } : item));
 
@@ -50,8 +50,8 @@ export default function ListAdd() {
     });
   };
 
-  const isEmptyItem = (item: { name: string; quantity: string }) =>
-    item.name.trim() === "" && item.quantity.trim() === "";
+  const isEmptyItem = (item: { name: string; quantity: string; unit: string }) =>
+    item.name.trim() === "" && item.quantity.trim() === "" && (item.unit === "none" || item.unit.trim() === "");
 
   const handleRowBlur = (index: number, e: React.FocusEvent<HTMLDivElement>) => {
     const nextFocused = e.relatedTarget as Node | null;
@@ -77,12 +77,12 @@ export default function ListAdd() {
   return (
     <>
       <Stack sx={{ alignItems: "center" }}>
-                <TextInput
-                    placeholder={t("lists.placeholders.name")}
-                    value={name}
-                    variant={"standard"}
-                    type={"big"}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+        <TextInput
+            placeholder={t("lists.placeholders.name")}
+            value={name}
+            variant={"standard"}
+            type={"big"}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
         />
       </Stack>
 
@@ -93,17 +93,13 @@ export default function ListAdd() {
                 onBlur={(e) => handleRowBlur(index, e)}
                 sx={{
                   display: "grid",
-                  gridTemplateColumns: "minmax(0, 1fr) auto",
+                  gridTemplateColumns: "minmax(0, 1fr) auto auto",
                   alignItems: "center",
-                  columnGap: 2,
+                  columnGap: { xs: 1, sm: 2 },
                   mb: 2,
                 }}
               >
-                <Typography
-                  variant={isMobile ? "h6" : "h5"}
-                  sx={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
-                >
-                  <AutocompleteInput
+                <AutocompleteInput
                     placeholder={t("lists.placeholders.item")}
                     value={idToName[item.name] ?? item.name}
                     variant={"standard"}
@@ -119,16 +115,24 @@ export default function ListAdd() {
                       handleItemChange(index, "name", matchId);
                     }}
                     onChange={(newValue) => handleItemChange(index, "name", newValue)}
-                  />
-                </Typography>
+                />
 
-                <TextInput
+                <NumberInput
                   placeholder={t("lists.placeholders.quantity")}
                   value={item.quantity}
                   variant={"standard"}
                   type={"small"}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     handleItemChange(index, "quantity", e.target.value)
+                  }
+                />
+
+                <DefaultSelect
+                  value={item.unit === "none" ? t("inventory.placeholders.none") : item.unit}
+                  variant={"standard"}
+                  options={units}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleItemChange(index, "unit", e.target.value)
                   }
                 />
               </Stack>
