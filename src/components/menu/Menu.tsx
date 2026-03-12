@@ -33,6 +33,7 @@ export default function Menu({ isMobile = false, isOpen = true, onToggle }: Menu
     <Stack
       gap={4}
       sx={{
+        position: isMobile ? undefined : "fixed",
         width: 240,
         height: "100%",
         backgroundColor: "background.paper",
