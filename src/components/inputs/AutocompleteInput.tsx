@@ -107,6 +107,9 @@ export default function AutocompleteInput({
           sx: {
             maxHeight: 220,
             overflowY: "auto",
+            "& .MuiAutocomplete-option": {
+              fontSize: isTablet ? "0.8rem" : undefined,
+            },
             "&::-webkit-scrollbar": { width: "6px" },
             "&::-webkit-scrollbar-track": { background: "transparent" },
             "&::-webkit-scrollbar-thumb": {
@@ -131,9 +134,9 @@ export default function AutocompleteInput({
           onKeyDown={onKeyDown}
           onBlur={onBlur}
           sx={{
-            width: type === "small" ? (isMobile ? "8rem" : isTablet ? "10rem" : "18rem") : (isMobile ? "20rem" : isTablet ? "22rem" : "32rem"),
+            width: type === "small" ? "100%" : (isMobile ? "20rem" : isTablet ? "22rem" : "32rem"),
             "& .MuiInputBase-input": {
-              fontSize: type === "big" ? "2rem" : undefined,
+              fontSize: type === "big" ? "2rem" : isTablet ? "0.8rem" : undefined,
             },
           }}
         />

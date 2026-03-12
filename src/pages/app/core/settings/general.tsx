@@ -49,18 +49,19 @@ export default function GeneralSettings() {
 
       <Stack spacing={2} sx={{ maxWidth: 600, marginTop: 8 }}>
         <Typography variant="h5">{t("settings.general.language")}</Typography>
-        <DefaultSelect options={languages} value={language} setValue={setLanguage} />
+        <DefaultSelect value={language} setValue={setLanguage} variant={"outlined"} options={languages} />
       </Stack>
 
       <Stack spacing={2} sx={{ maxWidth: 600, marginTop: 6 }}>
         <Typography variant="h5">{t("settings.general.theme")}</Typography>
         <DefaultSelect
-          options={themeNames}
           value={selectedThemeName}
           setValue={(themeName: string) => {
             const selected = themes.find((th) => th.name === themeName);
             if (selected) setThemeValue(selected.value);
           }}
+          variant={"outlined"}
+          options={themeNames}
         />
       </Stack>
     </Stack>

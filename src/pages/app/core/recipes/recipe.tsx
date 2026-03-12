@@ -139,7 +139,7 @@ export default function Recipe() {
                     action={() => navigate(`/recipes`)}
                     icon={AddIcon}
                   />
-                  <DefaultSelect value={list} setValue={setList} options={lists} />
+                  <DefaultSelect value={list} setValue={setList} variant={"outlined"} options={lists} />
                 </Stack> :
                 <DefaultButton
                   label={t("recipes.cook")}
