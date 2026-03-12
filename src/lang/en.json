@@ -72,8 +72,13 @@
         "save": "Save inventory",
         "placeholders": {
             "item": "Item...",
-            "quantity": "Quantity...",
-            "none": "None"
+            "quantity": "Quantity..."
+        },
+        "units": {
+            "none": "None",
+            "slices": " Slices",
+            "bags": " Bags",
+            "pots": " Pots"
         }
     },
     "recipes": {

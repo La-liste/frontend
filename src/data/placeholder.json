@@ -36,7 +36,7 @@
                 {
                     "name": "en:water",
                     "quantity": "1",
-                    "unit": "L"
+                    "unit": "l"
                 },
                 {
                     "name": "en:butter",
@@ -144,7 +144,7 @@
                 {
                     "name": "en:creme-fraiche",
                     "quantity": "20",
-                    "unit": "cL"
+                    "unit": "cl"
                 },
                 {
                     "name": "en:egg",
@@ -222,13 +222,13 @@
         },
         {
             "name": "en:bread",
-            "quantity": "1",
-            "unit": "none"
+            "quantity": "5",
+            "unit": "slices"
         },
         {
             "name": "en:water",
             "quantity": "1",
-            "unit": "L"
+            "unit": "l"
         },
         {
             "name": "en:butter",

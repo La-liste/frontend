@@ -3,6 +3,7 @@ import { Stack, useTheme, useMediaQuery } from "@mui/material";
 import { TitlePage, DefaultButton, DefaultCheckbox } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
+import { getUnitOptions } from "../../../../constants/units";
 import CheckIcon from "@mui/icons-material/Check";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -11,6 +12,8 @@ import { useTranslation } from "react-i18next";
 
 export default function List() {
   const { t, i18n } = useTranslation();
+  const unitOptions = getUnitOptions(t);
+  const getUnitLabel = (value: string) => unitOptions.find((u) => u.value === value)?.label ?? value;
   const navigate = useNavigate();
   const { id } = useParams();
   const list = placeholderData.lists[id];
@@ -36,7 +39,7 @@ export default function List() {
 
       <Stack gap={2} sx={{ maxWidth: 400, width: "100%", margin: "36px auto", alignItems: "flex-start" }}>
         {list && list.items.map((item, index) => (
-          <DefaultCheckbox key={index} label={`${idToName[item.name] ?? item.name} ${item.quantity}${item.unit !== "none" ? item.unit : ""}`} cross />
+          <DefaultCheckbox key={index} label={`${idToName[item.name] ?? item.name} ${item.quantity}${item.unit !== "none" ? getUnitLabel(item.unit) : ""}`} cross />
         ))}
       </Stack>
 

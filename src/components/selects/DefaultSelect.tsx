@@ -1,7 +1,7 @@
 import { FormControl, MenuItem, Select, useMediaQuery, useTheme } from "@mui/material";
 import type { SelectChangeEvent } from "@mui/material/Select";
 
-export default function DefaultSelect({ label, variant, value, setValue, onChange, options }: { label?: string, variant: "standard" | "outlined" | "filled", value: string, setValue?: (value: string) => void, onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void, options?: string[] }) {
+export default function DefaultSelect({ label, variant, value, setValue, onChange, options }: { label?: string, variant: "standard" | "outlined" | "filled", value: string, setValue?: (value: string) => void, onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void, options?: string[] | { value: string; label: string }[] }) {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -14,8 +14,8 @@ export default function DefaultSelect({ label, variant, value, setValue, onChang
     return (
         <FormControl fullWidth>
             <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            labelId="select-label"
+            id="select"
             value={value}
             label={label}
             variant={variant}
@@ -35,9 +35,11 @@ export default function DefaultSelect({ label, variant, value, setValue, onChang
             }}
             sx={{ backgroundColor: variant === "standard" ? undefined : "primary.main", color: "primary.contrastText", width: variant === "standard" ? (isTablet ? "6rem" : "150px") : "300px", height: variant === "standard" ? undefined : "45px", caretColor: "transparent", "& .MuiSvgIcon-root": { color: "primary.contrastText" }, fontSize: isTablet ? "0.8rem" : undefined, }}
             >
-                {options?.map((option, index) => (
-                    <MenuItem key={index} value={option}>{option}</MenuItem>
-                ))}
+                {options?.map((option, index) => {
+                    const val = typeof option === "string" ? option : option.value;
+                    const lbl = typeof option === "string" ? option : option.label;
+                    return <MenuItem key={index} value={val}>{lbl}</MenuItem>;
+                })}
             </Select>
         </FormControl>
     );

@@ -72,8 +72,13 @@
         "save": "Enregistrer l'inventaire",
         "placeholders": {
             "item": "Élément...",
-            "quantity": "Quantité...",
-            "none": "Aucune"
+            "quantity": "Quantité..."
+        },
+        "units": {
+            "none": "Aucune",
+            "slices": " Tranches",
+            "bags": " Sachets",
+            "pots": " Pots"
         }
     },
     "recipes": {

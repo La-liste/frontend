@@ -3,6 +3,7 @@ import { Stack } from "@mui/material";
 import { TitlePage, TextInput, NumberInput, AutocompleteInput, DefaultButton, DefaultCheckbox, DefaultSelect } from "../../../../components";
 import { getIngredientsData, getIngredientsDataSync, buildMaps, normalize } from "../../../../services/store/Ingredients";
 import type { MapsState } from "../../../../services/store/Ingredients";
+import { getUnitOptions } from "../../../../constants/units";
 import placeholderData from "../../../../data/placeholder.json";
 import CheckIcon from "@mui/icons-material/Check";
 import { useNavigate, useParams } from "react-router-dom";
@@ -44,7 +45,7 @@ export default function ListEdit() {
     createEmptyItem(),
   ]);
 
-  const units = [t("inventory.placeholders.none"), "g", "kg", "L", "cL", "mL"];
+  const unitOptions = getUnitOptions(t);
 
   const handleItemChange = (index: number, field: "name" | "quantity" | "unit", value: string) => {
     setItems((prev) => {
@@ -139,9 +140,9 @@ export default function ListEdit() {
                 />
 
                 <DefaultSelect
-                  value={item.unit === "none" ? t("inventory.placeholders.none") : item.unit}
+                  value={item.unit}
                   variant={"standard"}
-                  options={units}
+                  options={unitOptions}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     handleItemChange(index, "unit", e.target.value)
                   }

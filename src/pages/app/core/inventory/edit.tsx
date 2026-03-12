@@ -3,6 +3,7 @@ import { Stack } from "@mui/material";
 import { TitlePage, NumberInput, DefaultButton, AutocompleteInput, DefaultSelect } from "../../../../components";
 import { getIngredientsData, getIngredientsDataSync } from "../../../../services/store/Ingredients";
 import type { IngredientTaxonomy } from "../../../../services/store/Ingredients";
+import { getUnitOptions } from "../../../../constants/units";
 import placeholderData from "../../../../data/placeholder.json";
 import CheckIcon from "@mui/icons-material/Check";
 import { useNavigate } from "react-router-dom";
@@ -44,6 +45,7 @@ function buildMaps(data: IngredientTaxonomy | null, lang: string): MapsState {
 
 export default function InventoryEdit() {
   const { t, i18n } = useTranslation();
+  const unitOptions = getUnitOptions(t);
   const navigate = useNavigate();
   const [maps, setMaps] = useState<MapsState>(() =>
     buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0])
@@ -59,8 +61,6 @@ export default function InventoryEdit() {
     })),
     createEmptyItem(),
   ]);
-
-  const units = [t("inventory.placeholders.none"), "g", "kg", "L", "cL", "mL"];
 
   useEffect(() => {
     let cancelled = false;
@@ -140,9 +140,9 @@ export default function InventoryEdit() {
             />
 
             <DefaultSelect
-              value={item.unit === "none" ? t("inventory.placeholders.none") : item.unit}
+              value={item.unit}
               variant={"standard"}
-              options={units}
+              options={unitOptions}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleItemChange(index, "unit", e.target.value)
               }

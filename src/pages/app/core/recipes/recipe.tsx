@@ -3,6 +3,7 @@ import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/materi
 import { TitlePage, DefaultButton, DefaultSelect } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
+import { getUnitOptions } from "../../../../constants/units";
 import EditIcon from "@mui/icons-material/Edit";
 import WarningIcon from '@mui/icons-material/Warning';
 import AddIcon from "@mui/icons-material/Add";
@@ -14,6 +15,8 @@ type RecipeIngredient = { name: string; quantity: string, unit: string };
 
 export default function Recipe() {
   const { t, i18n } = useTranslation();
+  const unitOptions = getUnitOptions(t);
+  const getUnitLabel = (value: string) => unitOptions.find((u) => u.value === value)?.label ?? value;
   const navigate = useNavigate();
   const { id } = useParams();
   const recipe = id ? placeholderData.recipes[Number(id)] : undefined;
@@ -105,7 +108,7 @@ export default function Recipe() {
                         whiteSpace: "nowrap",
                       }}
                     >
-                      {item.quantity}{item.unit !== "none" ? item.unit : ""}
+                      {item.quantity}{item.unit !== "none" ? getUnitLabel(item.unit) : ""}
                     </Typography>
                   </Stack>
                 </Stack>

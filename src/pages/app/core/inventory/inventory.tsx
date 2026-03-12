@@ -4,12 +4,15 @@ import { TitlePage, DefaultButton } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData } from "../../../../services/store/Ingredients";
 import type { IngredientTaxonomy } from "../../../../services/store/Ingredients";
+import { getUnitOptions } from "../../../../constants/units";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function Inventory() {
   const { t, i18n } = useTranslation();
+  const unitOptions = getUnitOptions(t);
+  const getUnitLabel = (value: string) => unitOptions.find((u) => u.value === value)?.label ?? value;
   const navigate = useNavigate();
   const items = placeholderData.items;
   const theme = useTheme();
@@ -83,7 +86,7 @@ export default function Inventory() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.quantity}{item.unit !== "none" ? item.unit : ""}
+                {item.quantity}{item.unit !== "none" ? getUnitLabel(item.unit) : ""}
               </Typography>
             </Stack>
           </Stack>

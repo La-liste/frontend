@@ -1,8 +1,11 @@
 import { Button, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { getUnitOptions } from "../../constants/units";
 import { useTranslation } from "react-i18next";
 
 export default function ListButton({ label, items, isShared, action }: { label: string, items: any[], isShared?: boolean, action: () => void }) {
     const { t } = useTranslation();
+    const unitOptions = getUnitOptions(t);
+    const getUnitLabel = (value: string) => unitOptions.find((u) => u.value === value)?.label ?? value;
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -30,7 +33,7 @@ export default function ListButton({ label, items, isShared, action }: { label: 
         <Stack sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "0.25rem" }}>
         {items.slice(0, 2).map((item, index) => (
             <Typography key={index} variant="body2">
-                - {item.name} {item.quantity}{item.unit !== "none" ? item.unit : ""}
+                - {item.name} {item.quantity}{item.unit !== "none" ? getUnitLabel(item.unit) : ""}
             </Typography>
         ))}
         {items.length > 2 && <Typography variant="body2">...</Typography>}
