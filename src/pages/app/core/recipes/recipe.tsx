@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/material";
-import { TitlePage, DefaultButton, DefaultSelect } from "../../../../components";
+import { TitlePage, DefaultButton, DefaultDialog } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
 import { getUnitOptions } from "../../../../constants/units";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import WarningIcon from '@mui/icons-material/Warning';
 import AddIcon from "@mui/icons-material/Add";
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
@@ -28,6 +29,20 @@ export default function Recipe() {
     () => buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0]).idToName
   );
 
+  const [dialogOpen, setdialogOpen] = useState(false);
+
+  const handleOpen = () => {
+    setdialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setdialogOpen(false);
+  };
+
+  const handleConfirm = () => {
+    setdialogOpen(false);
+  };
+
   useEffect(() => {
     let cancelled = false;
     const load = async () => {
@@ -42,9 +57,6 @@ export default function Recipe() {
   const isItemInList = (ingredientId: string) =>
     availableItems.some((inventoryItem) => inventoryItem.name === ingredientId);
   const hasMissingItems = recipe?.ingredients.some((item: RecipeIngredient) => !isItemInList(item.name)) ?? false;
-
-  const lists = placeholderData.lists.map((listItem) => listItem.name);
-  const [list, setList] = useState<string>(lists[0] ?? "");
 
   return (
     <>
@@ -117,40 +129,38 @@ export default function Recipe() {
             ))}
       
             {recipe && (
-              <Stack
-                gap={4}
-                direction={isTablet ? "column" : "row"}
-                sx={{ mt: 4, alignItems: isTablet ? "center" : "flex-start" }}
-              >
-                <DefaultButton
-                  label={t("recipes.edit")}
-                  action={() => navigate(`/recipes/${id}/edit`)}
-                  icon={EditIcon}
-                />
-                {hasMissingItems ? <Stack
-                  direction={"column"}
-                  alignItems={"center"}
-                  gap={1}
-                  sx={{
-                    width: isTablet ? "100%" : "fit-content",
-                    maxWidth: isTablet ? 300 : undefined,
-                    "& .MuiFormControl-root": { width: isTablet ? "100%" : "auto" },
-                  }}
-                >
+              <Stack sx={{ marginTop: 4, alignItems: "center" }}>
+                <Stack direction={isTablet ? "column" : "row"} gap={2}>
                   <DefaultButton
-                    label={t("recipes.list")}
-                    action={() => navigate(`/recipes`)}
-                    icon={AddIcon}
+                    label={t("recipes.edit")}
+                    action={() => navigate(`/recipes/${id}/edit`)}
+                    icon={EditIcon}
                   />
-                  <DefaultSelect value={list} setValue={setList} variant={"outlined"} options={lists} />
-                </Stack> :
-                <DefaultButton
-                  label={t("recipes.cook")}
-                  action={() => navigate(`/recipes`)}
-                  icon={LocalDiningIcon}
-                />}
+                  <DefaultButton
+                    label={t("recipes.delete")}
+                    action={handleOpen}
+                    icon={DeleteIcon}
+                  />
+                </Stack>
+
+                <Stack sx={{ mt: 4 }}>
+                  {hasMissingItems ? 
+                    <DefaultButton
+                      label={t("recipes.list")}
+                      action={() => navigate(`/recipes`)}
+                      icon={AddIcon}
+                    />
+                     :
+                    <DefaultButton
+                      label={t("recipes.cook")}
+                      action={() => navigate(`/recipes`)}
+                      icon={LocalDiningIcon}
+                    />}
+                </Stack>
             </Stack>
             )}
+
+            <DefaultDialog title={t("recipes.dialog.title")} description={t("recipes.dialog.description")} open={dialogOpen} onConfirm={handleConfirm} onCancel={handleClose} />
           </Stack>
     </>
   );

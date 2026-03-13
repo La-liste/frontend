@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/material";
-import { IconButton, DefaultButton, TitlePage } from "../../../../../components";
+import { IconButton, DefaultButton, TitlePage, DefaultDialog } from "../../../../../components";
 import placeholderData from "../../../../../data/placeholder.json";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,6 +18,20 @@ export default function AdminSettings() {
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const users = placeholderData.users;
+
+  const [dialogOpen, setdialogOpen] = useState(false);
+
+  const handleOpen = () => {
+    setdialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setdialogOpen(false);
+  };
+
+  const handleConfirm = () => {
+    setdialogOpen(false);
+  };
 
   return (
     <Stack sx={{ maxWidth: 1200, width: "100%", margin: "0 auto", px: { xs: 1, sm: 2, md: 3 } }}>
@@ -82,7 +97,7 @@ export default function AdminSettings() {
               <Stack>
                 <Stack direction="row" gap={1} sx={{ flexShrink: 0 }}>
                   <IconButton icon={EditIcon} action={() => navigate(`/settings/admin/${index}/edit`)} />
-                  <IconButton icon={DeleteIcon} action={() => {}} />
+                  <IconButton icon={DeleteIcon} action={handleOpen} />
                 </Stack>
               </Stack>
             </Stack>
@@ -98,6 +113,8 @@ export default function AdminSettings() {
           />
         </Stack>
       </Stack>
+
+      <DefaultDialog title={t("settings.admin.dialog.title")} description={t("settings.admin.dialog.description")} open={dialogOpen} onConfirm={handleConfirm} onCancel={handleClose} />
     </Stack>
   );
 }

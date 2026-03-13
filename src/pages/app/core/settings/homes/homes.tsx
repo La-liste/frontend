@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/material";
-import { IconButton, DefaultButton, TitlePage } from "../../../../../components";
+import { IconButton, DefaultButton, TitlePage, DefaultDialog } from "../../../../../components";
 import placeholderData from "../../../../../data/placeholder.json";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,6 +15,20 @@ export default function HomeSettings() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const homes = placeholderData.homes;
+
+  const [dialogOpen, setdialogOpen] = useState(false);
+
+  const handleOpen = () => {
+    setdialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setdialogOpen(false);
+  };
+
+  const handleConfirm = () => {
+    setdialogOpen(false);
+  };
 
 return (
   <Stack sx={{ maxWidth: 1200, width: "100%", margin: "0 auto" }}>
@@ -58,7 +73,7 @@ return (
             <Stack>
               <Stack direction="row" gap={1}>
                 <IconButton icon={EditIcon} action={() => navigate(`/settings/homes/${index}/edit`)} />
-                <IconButton icon={DeleteIcon} action={() => {}} />
+                <IconButton icon={DeleteIcon} action={handleOpen} />
               </Stack>
             </Stack>
           </Stack>
@@ -74,6 +89,8 @@ return (
         />
       </Stack>
     </Stack>
+
+    <DefaultDialog title={t("settings.homes.dialog.title")} description={t("settings.homes.dialog.description")} open={dialogOpen} onConfirm={handleConfirm} onCancel={handleClose} />
   </Stack>
 );
 }

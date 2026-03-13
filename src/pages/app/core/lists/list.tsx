@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Stack, useTheme, useMediaQuery } from "@mui/material";
-import { TitlePage, DefaultButton, DefaultCheckbox } from "../../../../components";
+import { TitlePage, DefaultButton, DefaultCheckbox, DefaultDialog } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
 import { getUnitOptions } from "../../../../constants/units";
@@ -23,6 +23,20 @@ export default function List() {
   const [idToName, setIdToName] = useState<Record<string, string>>(
     () => buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0]).idToName
   );
+
+  const [dialogOpen, setdialogOpen] = useState(false);
+
+  const handleOpen = () => {
+    setdialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setdialogOpen(false);
+  };
+
+  const handleConfirm = () => {
+    setdialogOpen(false);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -54,7 +68,7 @@ export default function List() {
               />
               <DefaultButton
                 label={t("lists.delete")}
-                action={() => navigate("/lists")}
+                action={handleOpen}
                 icon={DeleteIcon}
               />
             </Stack>
@@ -67,6 +81,8 @@ export default function List() {
             </Stack>
           </Stack>
         )}
+
+        <DefaultDialog title={t("lists.dialog.title")} description={t("lists.dialog.description")} open={dialogOpen} onConfirm={handleConfirm} onCancel={handleClose} />
     </>
   );
 }

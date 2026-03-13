@@ -6,6 +6,10 @@
         "required": "Ce champ est requis",
         "mismatch": "Les mots de passe ne correspondent pas"
     },
+    "buttons": {
+        "confirm": "Confirmer",
+        "cancel": "Annuler"
+    },
     "menu": {
         "home": "Accueil",
         "lists": "Listes",
@@ -62,6 +66,10 @@
             "name": "Nom de la liste...",
             "item": "Élément...",
             "quantity": "Quantité..."
+        },
+        "dialog": {
+            "title": "Supprimer la liste ?",
+            "description": "Êtes-vous sûr de vouloir supprimer cette liste ? Cette action est irréversible."
         }
     },
     "inventory": {
@@ -99,10 +107,15 @@
         },
         "add": "Ajouter une recette",
         "edit": "Modifier la recette",
+        "delete": "Supprimer la recette",
         "save": "Enregistrer la recette",
         "cook": "Cuisiner cette recette",
         "list": "Ajouter ce qui manque",
-        "notFound": "Recette introuvable"
+        "notFound": "Recette introuvable",
+        "dialog": {
+            "title": "Supprimer la recette ?",
+            "description": "Êtes-vous sûr de vouloir supprimer cette recette ? Cette action est irréversible."
+        }
     },
     "settings": {
         "title": "Paramètres",
@@ -176,6 +189,10 @@
                 "informations": "Informations",
                 "name": "Nom du foyer",
                 "button": "Enregistrer le foyer"
+            },
+            "dialog": {
+                "title": "Supprimer le foyer ?",
+                "description": "Êtes-vous sûr de vouloir supprimer ce foyer ? Cette action est irréversible."
             }
         },
         "admin": {
@@ -207,6 +224,10 @@
                 "password": "Mot de passe",
                 "admin": "Administrateur",
                 "button": "Enregistrer l'utilisateur"
+            },
+            "dialog": {
+                "title": "Supprimer l'utilisateur ?",
+                "description": "Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible."
             }
         }
     }
