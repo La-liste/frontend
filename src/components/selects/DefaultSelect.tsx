@@ -33,7 +33,7 @@ export default function DefaultSelect({ label, variant, value, setValue, onChang
                     }
                 }
             }}
-            sx={{ backgroundColor: variant === "standard" ? undefined : "primary.main", color: "primary.contrastText", width: variant === "standard" ? (isTablet ? "6rem" : "150px") : "300px", height: variant === "standard" ? undefined : "45px", caretColor: "transparent", "& .MuiSvgIcon-root": { color: "primary.contrastText" }, fontSize: isTablet ? "0.8rem" : undefined, }}
+            sx={{ backgroundColor: variant === "standard" ? undefined : "primary.main", color: "primary.contrastText", width: variant === "standard" ? (isTablet ? "6rem" : "150px") : "300px", height: variant === "standard" ? undefined : "45px", "& .MuiSvgIcon-root": { color: "primary.contrastText" }, fontSize: isTablet ? "0.8rem" : undefined, }}
             >
                 {options?.map((option, index) => {
                     const val = typeof option === "string" ? option : option.value;
