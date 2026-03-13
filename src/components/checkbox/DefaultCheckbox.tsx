@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FormControlLabel, Checkbox } from "@mui/material";
 
-export default function DefaultCheckbox({ label, cross, checked, action }: { label: string, cross?: boolean, checked?: boolean, action?: () => void }) {
+export default function DefaultCheckbox({ label, cross, checked, action, isCentered }: { label: string, cross?: boolean, checked?: boolean, action?: () => void, isCentered?: boolean }) {
 
     const [check, setCheck] = useState(false);
     const isChecked = checked ?? check;
@@ -29,7 +29,7 @@ export default function DefaultCheckbox({ label, cross, checked, action }: { lab
             }
             label={label}
             sx={{
-                width: "100%",
+                width: isCentered ? "fit-content" : "100%",
                 height: "fit-content",
                 alignItems: "center",
                 justifyContent: "flex-start",

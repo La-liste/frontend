@@ -151,7 +151,7 @@ export default function ListEdit() {
             ))}
 
             <Stack gap={2} sx={{ mt: 4, width: "100%", alignItems: "center" }}>
-              <DefaultCheckbox label={t("lists.shared")} checked={shared} action={() => setShared((prev) => !prev)} />
+              <DefaultCheckbox label={t("lists.shared")} checked={shared} action={() => setShared((prev) => !prev)} isCentered />
                 <DefaultButton
                     label={t("lists.save")}
                     action={() => navigate(`/lists/${id}`)}

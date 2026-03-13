@@ -58,6 +58,10 @@ export default function Recipe() {
     availableItems.some((inventoryItem) => inventoryItem.name === ingredientId);
   const hasMissingItems = recipe?.ingredients.some((item: RecipeIngredient) => !isItemInList(item.name)) ?? false;
 
+  const missingItems: RecipeIngredient[] = recipe?.ingredients.filter(
+    (item: RecipeIngredient) => !isItemInList(item.name)
+  ).map((item: RecipeIngredient) => ({ name: item.name, quantity: item.quantity, unit: item.unit })) ?? [];
+
   return (
     <>
       <TitlePage text={recipe ? recipe.name : t("recipes.notFound")} isCentered />
@@ -147,7 +151,7 @@ export default function Recipe() {
                   {hasMissingItems ? 
                     <DefaultButton
                       label={t("recipes.list")}
-                      action={() => navigate(`/recipes`)}
+                      action={() => navigate(`/lists/add`, { state: { items: missingItems } })}
                       icon={AddIcon}
                     />
                      :

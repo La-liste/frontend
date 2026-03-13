@@ -5,7 +5,7 @@ import { getIngredientsData, getIngredientsDataSync, buildMaps, normalize } from
 import type { MapsState } from "../../../../services/store/Ingredients";
 import { getUnitOptions } from "../../../../constants/units";
 import CheckIcon from "@mui/icons-material/Check";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 type ItemRow = { name: string; quantity: string; unit: string };
@@ -22,6 +22,11 @@ export default function ListAdd() {
   );
   const { opts: options, idToName, nameToId } = maps;
 
+  const location = useLocation();
+  const [items, setItems] = useState<ItemRow[]>(
+    location.state?.items ?? [createEmptyItem()]
+  );
+
   useEffect(() => {
     let cancelled = false;
     const load = async () => {
@@ -31,10 +36,6 @@ export default function ListAdd() {
     load();
     return () => { cancelled = true; };
   }, [i18n.language]);
-
-  const [items, setItems] = useState<ItemRow[]>([
-    createEmptyItem(),
-  ]);
 
   const unitOptions = getUnitOptions(t);
 
@@ -140,7 +141,7 @@ export default function ListAdd() {
             ))}
       
             <Stack gap={2} sx={{ mt: 4, width: "100%", alignItems: "center" }}>
-              <DefaultCheckbox label={t("lists.shared")} />
+              <DefaultCheckbox label={t("lists.shared")} isCentered />
               <DefaultButton
                 label={t("lists.save")}
                 action={() => navigate("/lists")}
