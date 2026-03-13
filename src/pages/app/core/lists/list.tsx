@@ -19,6 +19,7 @@ export default function List() {
   const list = placeholderData.lists[id];
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   const [idToName, setIdToName] = useState<Record<string, string>>(
     () => buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0]).idToName
   );
@@ -37,7 +38,7 @@ export default function List() {
     <>
       <TitlePage text={list ? list.name : t("lists.notFound")} isCentered />
 
-      <Stack gap={2} sx={{ maxWidth: 400, width: "100%", margin: "36px auto", alignItems: "flex-start" }}>
+      <Stack gap={2} sx={{ maxWidth: 400, width: "100%", margin: isMobile ? "36px 24px" : "36px auto", alignItems: "center" }}>
         {list && list.items.map((item, index) => (
           <DefaultCheckbox key={index} label={`${idToName[item.name] ?? item.name} ${item.quantity}${item.unit !== "none" ? getUnitLabel(item.unit) : ""}`} cross />
         ))}
@@ -45,7 +46,7 @@ export default function List() {
 
       {list && (
           <Stack sx={{ position: "absolute", bottom: isMobile ? 36 : 56, left: "50%", transform: "translateX(-50%)", alignItems: "center" }}>
-            <Stack direction={isMobile ? "column" : "row"} gap={2}>
+            <Stack direction={isTablet ? "column" : "row"} gap={2}>
               <DefaultButton
                 label={t("lists.edit")}
                 action={() => navigate(`/lists/${id}/edit`)}

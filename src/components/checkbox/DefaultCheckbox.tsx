@@ -29,10 +29,10 @@ export default function DefaultCheckbox({ label, cross, checked, action }: { lab
             }
             label={label}
             sx={{
-                width: "fit-content",
+                width: "100%",
                 height: "fit-content",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "flex-start",
                 boxShadow: "none",
                 textDecoration: isStriked ? "line-through" : "none",
                 gap: 1,
