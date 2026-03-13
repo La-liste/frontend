@@ -1,5 +1,1 @@
-import DefaultCheckbox from "./DefaultCheckbox";
-
-export {
-    DefaultCheckbox
-};
+export { default as DefaultCheckbox } from "./DefaultCheckbox";

@@ -1,13 +1,5 @@
-import DefaultButton from "./DefaultButton";
-import BigButton from "./BigButton";
-import MenuButton from "./MenuButton";
-import IconButton from "./IconButton";
-import ListButton from "./ListButton";
-
-export {
-    DefaultButton,
-    BigButton,
-    MenuButton,
-    IconButton,
-    ListButton
-};
+export { default as DefaultButton } from "./DefaultButton";
+export { default as BigButton } from "./BigButton";
+export { default as MenuButton } from "./MenuButton";
+export { default as IconButton } from "./IconButton";
+export { default as ListButton } from "./ListButton";

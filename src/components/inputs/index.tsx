@@ -1,11 +1,4 @@
-import TextInput from "./TextInput";
-import AutocompleteInput from "./AutocompleteInput";
-import NumberInput from "./NumberInput";
-import PasswordInput from "./PasswordInput";
-
-export {
-    TextInput,
-    AutocompleteInput,
-    NumberInput,
-    PasswordInput
-};
+export { default as TextInput } from "./TextInput";
+export { default as AutocompleteInput } from "./AutocompleteInput";
+export { default as NumberInput } from "./NumberInput";
+export { default as PasswordInput } from "./PasswordInput";

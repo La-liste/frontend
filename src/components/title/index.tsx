@@ -1,9 +1,3 @@
-import TitleBig from "./TitleBig";
-import TitleSmall from "./TitleSmall";
-import TitlePage from "./TitlePage";
-
-export {
-    TitleBig,
-    TitleSmall,
-    TitlePage
-};
+export { default as TitleBig } from "./TitleBig";
+export { default as TitleSmall } from "./TitleSmall";
+export { default as TitlePage } from "./TitlePage";

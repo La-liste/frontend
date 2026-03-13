@@ -2,7 +2,17 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { Setup, Application } from './pages'
+import {
+  Setup,
+  Login,
+  Home,
+  Lists, List, ListAdd, ListEdit,
+  Inventory, InventoryEdit,
+  Recipes, Recipe, RecipeAdd, RecipeEdit,
+  Settings, GeneralSettings, AccountSettings,
+  HomesSettings, AddHomeSettings, EditHomeSettings,
+  AdminSettings, AddAdminSettings, EditAdminSettings
+} from './pages'
 import { AppLayout } from './components';
 import { getIngredientsData } from "./services/store/Ingredients";
 
@@ -46,28 +56,28 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/setup" element={needsSetup ? <Setup setNeedsSetup={setNeedsSetup} /> : <Navigate to="/login" />} />
-        <Route path="/login" element={needsSetup ? <Navigate to="/setup" /> : isLogin ? <Navigate to="/home" /> : <Application.Login setIsLogin={setIsLogin} />} />
-        <Route path="/home" element={isLogin ? <AppLayout><Application.Home /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/lists" element={isLogin ? <AppLayout><Application.Lists /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/lists/add" element={isLogin ? <AppLayout><Application.ListAdd /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/lists/:id" element={isLogin ? <AppLayout><Application.List /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/lists/:id/edit" element={isLogin ? <AppLayout><Application.ListEdit /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/inventory" element={isLogin ? <AppLayout><Application.Inventory /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/inventory/edit" element={isLogin ? <AppLayout><Application.InventoryEdit /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/recipes" element={isLogin ? <AppLayout><Application.Recipes /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/recipes/add" element={isLogin ? <AppLayout><Application.RecipeAdd /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/recipes/:id" element={isLogin ? <AppLayout><Application.Recipe /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/recipes/:id/edit" element={isLogin ? <AppLayout><Application.RecipeEdit /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings" element={isLogin ? <AppLayout><Application.Settings /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings/general" element={isLogin ? <AppLayout><Application.GeneralSettings /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings/account" element={isLogin ? <AppLayout><Application.AccountSettings /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings/homes" element={isLogin ? <AppLayout><Application.HomesSettings /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings/homes/add" element={isLogin ? <AppLayout><Application.AddHomeSettings /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings/homes/:id/edit" element={isLogin ? <AppLayout><Application.EditHomeSettings /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings/admin" element={isLogin ? <AppLayout><Application.AdminSettings /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings/admin/add" element={isLogin ? <AppLayout><Application.AddAdminSettings /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings/admin/edit" element={isLogin ? <AppLayout><Application.EditAdminSettings /></AppLayout> : <Navigate to="/login" />} />
-        <Route path="/settings/admin/:id/edit" element={isLogin ? <AppLayout><Application.EditAdminSettings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/login" element={needsSetup ? <Navigate to="/setup" /> : isLogin ? <Navigate to="/home" /> : <Login setIsLogin={setIsLogin} />} />
+        <Route path="/home" element={isLogin ? <AppLayout><Home /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/lists" element={isLogin ? <AppLayout><Lists /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/lists/add" element={isLogin ? <AppLayout><ListAdd /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/lists/:id" element={isLogin ? <AppLayout><List /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/lists/:id/edit" element={isLogin ? <AppLayout><ListEdit /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/inventory" element={isLogin ? <AppLayout><Inventory /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/inventory/edit" element={isLogin ? <AppLayout><InventoryEdit /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/recipes" element={isLogin ? <AppLayout><Recipes /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/recipes/add" element={isLogin ? <AppLayout><RecipeAdd /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/recipes/:id" element={isLogin ? <AppLayout><Recipe /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/recipes/:id/edit" element={isLogin ? <AppLayout><RecipeEdit /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings" element={isLogin ? <AppLayout><Settings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings/general" element={isLogin ? <AppLayout><GeneralSettings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings/account" element={isLogin ? <AppLayout><AccountSettings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings/homes" element={isLogin ? <AppLayout><HomesSettings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings/homes/add" element={isLogin ? <AppLayout><AddHomeSettings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings/homes/:id/edit" element={isLogin ? <AppLayout><EditHomeSettings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings/admin" element={isLogin ? <AppLayout><AdminSettings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings/admin/add" element={isLogin ? <AppLayout><AddAdminSettings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings/admin/edit" element={isLogin ? <AppLayout><EditAdminSettings /></AppLayout> : <Navigate to="/login" />} />
+        <Route path="/settings/admin/:id/edit" element={isLogin ? <AppLayout><EditAdminSettings /></AppLayout> : <Navigate to="/login" />} />
         <Route path="/" element={ needsSetup ? <Navigate to="/setup" /> : isLogin ? <Navigate to="/home" /> : <Navigate to="/login" /> } />
       </Routes>
     </BrowserRouter>

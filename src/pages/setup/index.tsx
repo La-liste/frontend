@@ -1,13 +1,5 @@
-import Welcome from "./steps/welcome";
-import Username from "./steps/username";
-import Password from "./steps/password";
-import Home from "./steps/home";
-import Done from "./steps/done";
-
-export {
-    Welcome,
-    Username,
-    Password,
-    Home,
-    Done
-};
+export { default as Welcome } from "./steps/welcome";
+export { default as Username } from "./steps/username";
+export { default as Password } from "./steps/password";
+export { default as Home } from "./steps/home";
+export { default as Done } from "./steps/done";

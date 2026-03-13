@@ -1,46 +1,21 @@
-import Login from './auth/login'
-import Home from './core/home'
-import Lists from './core/lists/lists'
-import List from './core/lists/list'
-import ListAdd from './core/lists/add'
-import ListEdit from './core/lists/edit'
-import Inventory from './core/inventory/inventory'
-import InventoryEdit from './core/inventory/edit'
-import Recipes from './core/recipes/recipes'
-import Recipe from './core/recipes/recipe'
-import RecipeAdd from './core/recipes/add'
-import RecipeEdit from './core/recipes/edit'
-import Settings from './core/settings/menu'
-import GeneralSettings from './core/settings/general'
-import AccountSettings from './core/settings/account'
-import HomesSettings from './core/settings/homes/homes'
-import AddHomeSettings from './core/settings/homes/add'
-import EditHomeSettings from './core/settings/homes/edit'
-import AdminSettings from './core/settings/admin/admin'
-import AddAdminSettings from './core/settings/admin/add'
-import EditAdminSettings from './core/settings/admin/edit'
-
-
-export default {
-  Login,
-  Home,
-  Lists,
-  List,
-  ListAdd,
-  ListEdit,
-  Inventory,
-  InventoryEdit,
-  Recipes,
-  Recipe,
-  RecipeAdd,
-  RecipeEdit,
-  Settings,
-  GeneralSettings,
-  AccountSettings,
-  HomesSettings,
-  AddHomeSettings,
-  EditHomeSettings,
-  AdminSettings,
-  AddAdminSettings,
-  EditAdminSettings
-}
+export { default as Login } from './auth/login';
+export { default as Home } from './core/home';
+export { default as Lists } from './core/lists/lists';
+export { default as List } from './core/lists/list';
+export { default as ListAdd } from './core/lists/add';
+export { default as ListEdit } from './core/lists/edit';
+export { default as Inventory } from './core/inventory/inventory';
+export { default as InventoryEdit } from './core/inventory/edit';
+export { default as Recipes } from './core/recipes/recipes';
+export { default as Recipe } from './core/recipes/recipe';
+export { default as RecipeAdd } from './core/recipes/add';
+export { default as RecipeEdit } from './core/recipes/edit';
+export { default as Settings } from './core/settings/menu';
+export { default as GeneralSettings } from './core/settings/general';
+export { default as AccountSettings } from './core/settings/account';
+export { default as HomesSettings } from './core/settings/homes/homes';
+export { default as AddHomeSettings } from './core/settings/homes/add';
+export { default as EditHomeSettings } from './core/settings/homes/edit';
+export { default as AdminSettings } from './core/settings/admin/admin';
+export { default as AddAdminSettings } from './core/settings/admin/add';
+export { default as EditAdminSettings } from './core/settings/admin/edit';

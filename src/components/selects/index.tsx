@@ -1,7 +1,2 @@
-import MenuSelect from "./MenuSelect";
-import DefaultSelect from "./DefaultSelect";
-
-export {
-    MenuSelect,
-    DefaultSelect,
-};
+export { default as MenuSelect } from "./MenuSelect";
+export { default as DefaultSelect } from "./DefaultSelect";
