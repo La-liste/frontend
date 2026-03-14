@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Stack, Typography } from "@mui/material";
 import { DefaultSelect, TitlePage } from "../../../../components";
 import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGUAGES } from "../../../../i18n";
+import { ThemeContext } from "../../../../theme";
 
 type ThemeOption = { name: string; value: string };
 
 export default function GeneralSettings() {
   const { t, i18n } = useTranslation();
+  const { setThemeKey } = useContext(ThemeContext);
 
   const languages = Object.values(SUPPORTED_LANGUAGES);
 
@@ -35,14 +37,6 @@ export default function GeneralSettings() {
     }
   }, [language, i18n]);
 
-  useEffect(() => {
-      const current = localStorage.getItem("theme");
-      if (current !== themeValue) {
-        localStorage.setItem("theme", themeValue);
-        window.location.reload();
-      }
-    }, [themeValue]);
-
   return (
     <Stack>
       <TitlePage text={t("settings.general.title")} isCentered />
@@ -58,7 +52,10 @@ export default function GeneralSettings() {
           value={selectedThemeName}
           setValue={(themeName: string) => {
             const selected = themes.find((th) => th.name === themeName);
-            if (selected) setThemeValue(selected.value);
+            if (selected) {
+              setThemeValue(selected.value);
+              setThemeKey(selected.value);
+            }
           }}
           variant={"outlined"}
           options={themeNames}

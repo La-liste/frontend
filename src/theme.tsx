@@ -1,7 +1,5 @@
+import { createContext } from "react";
 import { createTheme } from "@mui/material/styles";
-
-const storedTheme =
-  typeof window !== "undefined" ? localStorage.getItem("theme") : null;
 
 const palettes = {
   blue: {
@@ -71,31 +69,28 @@ const palettes = {
 
 type PaletteKey = keyof typeof palettes;
 
-const paletteKey: PaletteKey =
-  storedTheme && storedTheme in palettes
-    ? (storedTheme as PaletteKey)
-    : "blue";
+export function createAppTheme(key: string) {
+  const paletteKey: PaletteKey = key in palettes ? (key as PaletteKey) : "blue";
+  const c = palettes[paletteKey];
 
-export const appColors = palettes[paletteKey];
-
-export const theme = createTheme({
+  return createTheme({
   cssVariables: true,
   shape: {
     borderRadius: 24,
   },
   palette: {
     background: {
-      default: appColors.background,
-      paper: appColors.surface,
+      default: c.background,
+      paper: c.surface,
     },
     primary: {
-      main: appColors.accent,
-      dark: appColors.accentHover,
-      contrastText: appColors.text,
+      main: c.accent,
+      dark: c.accentHover,
+      contrastText: c.text,
     },
     text: {
-      primary: appColors.text,
-      secondary: appColors.text,
+      primary: c.text,
+      secondary: c.text,
     },
   },
   typography: {
@@ -106,7 +101,7 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         "html, body": { minHeight: "100%" },
-        body: { backgroundColor: appColors.background },
+        body: { backgroundColor: c.background },
       },
     },
 
@@ -118,10 +113,10 @@ export const theme = createTheme({
           textTransform: "none",
         },
         containedPrimary: {
-          backgroundColor: appColors.accent,
-          color: appColors.text,
+          backgroundColor: c.accent,
+          color: c.text,
           "&:hover": {
-            backgroundColor: appColors.accentHover,
+            backgroundColor: c.accentHover,
             boxShadow: "none",
           },
         },
@@ -132,8 +127,8 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 12,
-          backgroundColor: appColors.surface,
-          color: appColors.text,
+          backgroundColor: c.surface,
+          color: c.text,
         },
         notchedOutline: {
           border: "none",
@@ -143,18 +138,23 @@ export const theme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: appColors.text,
-          "&.Mui-focused": { color: appColors.text },
+          color: c.text,
+          "&.Mui-focused": { color: c.text },
         },
       },
     },
     MuiFormLabel: {
       styleOverrides: {
         root: {
-          color: appColors.text,
-          "&.Mui-focused": { color: appColors.text },
+          color: c.text,
+          "&.Mui-focused": { color: c.text },
         },
       },
     },
   },
+  });
+}
+
+export const ThemeContext = createContext<{ setThemeKey: (key: string) => void }>({
+  setThemeKey: () => {},
 });
