@@ -217,7 +217,9 @@
                 "name": "Nom de l'utilisateur",
                 "password": "Mot de passe",
                 "admin": "Administrateur",
-                "button": "Ajouter l'utilisateur"
+                "button": "Ajouter l'utilisateur",
+                "homes": "Foyers",
+                "search": "Rechercher un foyer..."
             },
             "edit": {
                 "label": "Modifier un utilisateur",

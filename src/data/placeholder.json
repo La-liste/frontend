@@ -7,15 +7,25 @@
     "users": [
         {
             "name": "Loïc",
-            "admin": true
+            "admin": true,
+            "homes": [
+                "Ma maison",
+                "Les parents",
+                "Chez papi & mamie"
+            ]
         },
         {
             "name": "Timothé",
-            "admin": false
+            "admin": false,
+            "homes": [
+                "Ma maison"
+            ]
         },
         {
             "name": "Danny",
-            "admin": false
+            "admin": false,
+            "homes": [
+            ]
         }
     ],
     "lists": [

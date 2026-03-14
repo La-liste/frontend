@@ -19,6 +19,7 @@ type Props = {
   helperText?: string;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   inputRef?: React.Ref<HTMLInputElement>;
+  onSelect?: (value: string) => void;
 };
 
 function normalize(s: string): string {
@@ -43,6 +44,7 @@ export default function AutocompleteInput({
   helperText,
   onKeyDown,
   inputRef,
+  onSelect,
 }: Props) {
   const MIN_QUERY_LENGTH = 2;
   const [isEditing, setIsEditing] = useState(false);
@@ -70,15 +72,20 @@ export default function AutocompleteInput({
       value={null}
       inputValue={value}
       onInputChange={(_, newValue, reason) => {
-        onChange?.(newValue);
-
-        if (reason === "input" || reason === "clear" || reason === "reset") {
+        if (reason === "input" || reason === "clear") {
+          onChange?.(newValue);
+          setIsEditing(true);
+        } else if (reason === "reset") {
           setIsEditing(true);
         }
       }}
       onChange={(_, newValue) => {
         if (typeof newValue === "string") {
-          onChange?.(newValue);
+          if (onSelect) {
+            onSelect(newValue);
+          } else {
+            onChange?.(newValue);
+          }
         }
         setIsEditing(false);
       }}
@@ -135,9 +142,11 @@ export default function AutocompleteInput({
           onBlur={onBlur}
           sx={{
             width: type === "small" ? "100%" : (isMobile ? "20rem" : isTablet ? "22rem" : "32rem"),
-            "& .MuiInputBase-input": {
-              fontSize: type === "big" ? "2rem" : isTablet ? "0.8rem" : undefined,
-            },
+            ...(type === "big" && {
+              "& .MuiInputBase-input": {
+                fontSize: "2rem",
+              },
+            }),
           }}
         />
       )}

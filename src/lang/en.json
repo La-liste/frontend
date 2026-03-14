@@ -217,7 +217,9 @@
                 "name": "Username",
                 "password": "Password",
                 "admin": "Administrator",
-                "button": "Add user"
+                "button": "Add user",
+                "homes": "Homes",
+                "search": "Search a home..."
             },
             "edit": {
                 "label": "Edit a user",
