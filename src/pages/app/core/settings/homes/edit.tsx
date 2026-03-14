@@ -22,9 +22,9 @@ export default function EditHomeSettings() {
     <Stack>
       <TitlePage text={t("settings.homes.edit.label")} isCentered />
       <Stack spacing={4} sx={{ maxWidth: 600, marginTop: 8, height: "70dvh" }}>
-        <Typography variant={isMobile ? "h5" : isTablet ? "h5" : "h4"} sx={{ marginBottom: 2 }}>{t("settings.homes.edit.informations")}</Typography>
+        <Typography variant={isMobile ? "h5" : isTablet ? "h5" : "h4"} sx={{ marginBottom: 2 }}>{t("common.informations")}</Typography>
         <TextInput
-          placeholder={t("settings.homes.edit.name")}
+          placeholder={t("settings.homes.name")}
           variant="outlined"
           value={name}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}

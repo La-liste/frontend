@@ -53,15 +53,15 @@ export default function EditAdminSettings() {
     <Stack>
       <TitlePage text={t("settings.admin.edit.label")} isCentered />
       <Stack spacing={4} sx={{ maxWidth: 600, marginTop: 8, height: "70dvh" }}>
-        <Typography variant={isMobile ? "h5" : isTablet ? "h5" : "h4"} sx={{ marginBottom: 2 }}>{t("settings.admin.edit.informations")}</Typography>
+        <Typography variant={isMobile ? "h5" : isTablet ? "h5" : "h4"} sx={{ marginBottom: 2 }}>{t("common.informations")}</Typography>
         <Stack spacing={4}>
             <TextInput
-              placeholder={t("settings.admin.edit.name")}
+              placeholder={t("auth.username")}
               variant="outlined"
               value={name}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
             />
-            <PasswordInput placeholder={t("settings.admin.edit.password")} variant="outlined" onChange={() => {}} />
+            <PasswordInput placeholder={t("auth.password")} variant="outlined" onChange={() => {}} />
             <DefaultCheckbox
               label={t("settings.admin.edit.admin")}
               checked={isAdmin}

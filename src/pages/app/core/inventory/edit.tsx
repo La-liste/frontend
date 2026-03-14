@@ -112,7 +112,7 @@ export default function InventoryEdit() {
             }}
           >
             <AutocompleteInput
-                placeholder={t("inventory.placeholders.item")}
+                placeholder={t("common.placeholders.ingredient")}
                 value={idToName[item.name] ?? item.name}
                 variant={"standard"}
                 type={"small"}
@@ -130,7 +130,7 @@ export default function InventoryEdit() {
               />
 
             <NumberInput
-              placeholder={t("inventory.placeholders.quantity")}
+              placeholder={t("common.placeholders.quantity")}
               value={item.quantity}
               variant={"standard"}
               type={"small"}

@@ -1,4 +1,11 @@
 {
+    "common": {
+        "informations": "Informations",
+        "placeholders": {
+            "ingredient": "Ingrédient...",
+            "quantity": "Quantité..."
+        }
+    },
     "app": {
         "title": "La Liste"
     },
@@ -37,16 +44,16 @@
         },
         "home": {
             "label": "Nommez votre 1er foyer",
-            "input": "Nom du foyer"
+            "input": "Nom du foyer..."
         },
         "done": {
             "label": "Tout est bon, vous pouvez vous<br />aventurer dans {{appName}}"
         }
     },
     "auth": {
-        "username": "Nom d'utilisateur",
-        "password": "Mot de passe",
-        "verify": "Vérifier le mot de passe",
+        "username": "Nom d'utilisateur...",
+        "password": "Mot de passe...",
+        "verify": "Vérifier le mot de passe...",
         "button": "Se connecter"
     },
     "home": {
@@ -63,9 +70,7 @@
         "delete": "Supprimer la liste",
         "notFound": "Liste introuvable",
         "placeholders": {
-            "name": "Nom de la liste...",
-            "item": "Élément...",
-            "quantity": "Quantité..."
+            "name": "Nom de la liste..."
         },
         "dialog": {
             "title": "Supprimer la liste ?",
@@ -78,10 +83,6 @@
         "quantity": "Quantité",
         "edit": "Modifier l'inventaire",
         "save": "Enregistrer l'inventaire",
-        "placeholders": {
-            "item": "Élément...",
-            "quantity": "Quantité..."
-        },
         "units": {
             "none": "Aucune",
             "slices": " Tranches",
@@ -101,9 +102,7 @@
             "mobile": "Quant."
         },
         "placeholders": {
-            "name": "Nom de la recette...",
-            "ingredient": "Ingrédient...",
-            "quantity": "Quantité..."
+            "name": "Nom de la recette..."
         },
         "add": "Ajouter une recette",
         "edit": "Modifier la recette",
@@ -173,23 +172,19 @@
         },
         "account": {
             "title": "Mon compte",
-            "informations": "Informations",
             "security": "Sécurité"
         },
         "homes": {
             "title": "Mes foyers",
             "homes": "Foyers",
             "actions": "Actions",
+            "name": "Nom du foyer...",
             "add": {
                 "label": "Ajouter un foyer",
-                "informations": "Informations",
-                "name": "Nom du foyer",
                 "button": "Ajouter le foyer"
             },
             "edit": {
                 "label": "Modifier un foyer",
-                "informations": "Informations",
-                "name": "Nom du foyer",
                 "button": "Enregistrer le foyer"
             },
             "dialog": {
@@ -213,9 +208,6 @@
             },
             "add": {
                 "label": "Ajouter un utilisateur",
-                "informations": "Informations",
-                "name": "Nom de l'utilisateur",
-                "password": "Mot de passe",
                 "admin": "Administrateur",
                 "button": "Ajouter l'utilisateur",
                 "homes": "Foyers",
@@ -223,11 +215,10 @@
             },
             "edit": {
                 "label": "Modifier un utilisateur",
-                "informations": "Informations",
-                "name": "Nom de l'utilisateur",
-                "password": "Mot de passe",
                 "admin": "Administrateur",
-                "button": "Enregistrer l'utilisateur"
+                "button": "Enregistrer l'utilisateur",
+                "homes": "Foyers",
+                "search": "Rechercher un foyer..."
             },
             "dialog": {
                 "title": "Supprimer l'utilisateur ?",

@@ -1,4 +1,11 @@
 {
+    "common": {
+        "informations": "Informations",
+        "placeholders": {
+            "ingredient": "Ingredient...",
+            "quantity": "Quantity..."
+        }
+    },
     "app": {
         "title": "La Liste"
     },
@@ -37,16 +44,16 @@
         },
         "home": {
             "label": "Name your 1st home",
-            "input": "Home name"
+            "input": "Home name..."
         },
         "done": {
             "label": "All set, you can now<br />explore {{appName}}"
         }
     },
     "auth": {
-        "username": "Username",
-        "password": "Password",
-        "verify": "Verify password",
+        "username": "Username...",
+        "password": "Password...",
+        "verify": "Verify password...",
         "button": "Log in"
     },
     "home": {
@@ -63,9 +70,7 @@
         "delete": "Delete list",
         "notFound": "List not found",
         "placeholders": {
-            "name": "List name...",
-            "item": "Item...",
-            "quantity": "Quantity..."
+            "name": "List name..."
         },
         "dialog": {
             "title": "Delete list?",
@@ -78,10 +83,6 @@
         "quantity": "Quantity",
         "edit": "Edit inventory",
         "save": "Save inventory",
-        "placeholders": {
-            "item": "Item...",
-            "quantity": "Quantity..."
-        },
         "units": {
             "none": "None",
             "slices": " Slices",
@@ -101,9 +102,7 @@
             "mobile": "Quant."
         },
         "placeholders": {
-            "name": "Recipe name...",
-            "ingredient": "Ingredient...",
-            "quantity": "Quantity..."
+            "name": "Recipe name..."
         },
         "add": "Add a recipe",
         "edit": "Edit recipe",
@@ -173,23 +172,19 @@
         },
         "account": {
             "title": "My account",
-            "informations": "Informations",
             "security": "Security"
         },
         "homes": {
             "title": "My homes",
             "homes": "Homes",
             "actions": "Actions",
+            "name": "Home name...",
             "add": {
                 "label": "Add a home",
-                "informations": "Informations",
-                "name": "Home name",
                 "button": "Add home"
             },
             "edit": {
                 "label": "Edit a home",
-                "informations": "Informations",
-                "name": "Home name",
                 "button": "Edit home"
             },
             "dialog": {
@@ -213,9 +208,6 @@
             },
             "add": {
                 "label": "Add a user",
-                "informations": "Informations",
-                "name": "Username",
-                "password": "Password",
                 "admin": "Administrator",
                 "button": "Add user",
                 "homes": "Homes",
@@ -223,11 +215,10 @@
             },
             "edit": {
                 "label": "Edit a user",
-                "informations": "Informations",
-                "name": "Username",
-                "password": "Password",
                 "admin": "Administrator",
-                "button": "Edit user"
+                "button": "Edit user",
+                "homes": "Homes",
+                "search": "Search a home..."
             },
             "dialog": {
                 "title": "Delete user?",

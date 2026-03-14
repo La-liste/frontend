@@ -116,7 +116,7 @@ export default function ListEdit() {
                 }}
               >
                 <AutocompleteInput
-                    placeholder={t("lists.placeholders.item")}
+                    placeholder={t("common.placeholders.ingredient")}
                     value={idToName[item.name] ?? item.name}
                     variant={"standard"}
                     type={"small"}
@@ -134,7 +134,7 @@ export default function ListEdit() {
                 />
 
                 <NumberInput
-                  placeholder={t("lists.placeholders.quantity")}
+                  placeholder={t("common.placeholders.quantity")}
                   value={item.quantity}
                   variant={"standard"}
                   type={"small"}

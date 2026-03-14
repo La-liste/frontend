@@ -13,7 +13,7 @@ export default function AccountSettings() {
     <Stack>
       <TitlePage text={t("settings.account.title")} isCentered />
       <Stack spacing={4} sx={{ maxWidth: 600, marginTop: 8, height: "70dvh" }}>
-        <Typography variant={isMobile ? "h5" : isTablet ? "h5" : "h4"} sx={{ marginBottom: 2 }}>{t("settings.account.informations")}</Typography>
+        <Typography variant={isMobile ? "h5" : isTablet ? "h5" : "h4"} sx={{ marginBottom: 2 }}>{t("common.informations")}</Typography>
         <TextInput placeholder={t("auth.username")} variant="outlined" onChange={() => {}} />
 
         <Typography variant={isMobile ? "h5" : isTablet ? "h5" : "h4"} sx={{ marginBottom: 2 }}>{t("settings.account.security")}</Typography>

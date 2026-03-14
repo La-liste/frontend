@@ -101,7 +101,7 @@ export default function RecipeAdd() {
                 }}
               >
                 <AutocompleteInput
-                  placeholder={t("recipes.placeholders.ingredient")}
+                  placeholder={t("common.placeholders.ingredient")}
                     value={idToName[item.name] ?? item.name}
                     variant={"standard"}
                     type={"small"}
@@ -119,7 +119,7 @@ export default function RecipeAdd() {
                 />
 
                 <NumberInput
-                  placeholder={t("recipes.placeholders.quantity")}
+                  placeholder={t("common.placeholders.quantity")}
                   value={item.quantity}
                   variant={"standard"}
                   type={"small"}
