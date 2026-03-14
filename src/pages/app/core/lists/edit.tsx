@@ -6,7 +6,7 @@ import type { MapsState } from "../../../../services/store/Ingredients";
 import { getUnitOptions } from "../../../../constants/units";
 import placeholderData from "../../../../data/placeholder.json";
 import CheckIcon from "@mui/icons-material/Check";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 type ItemRow = { name: string; quantity: string; unit: string };
@@ -18,6 +18,7 @@ export default function ListEdit() {
   const { id } = useParams();
   const list = id ? placeholderData.lists[Number(id)] : undefined;
 
+  const location = useLocation();
   const [name, setName] = useState(list?.name ?? "");
   const [shared, setShared] = useState(list?.shared ?? false);
 
@@ -36,14 +37,17 @@ export default function ListEdit() {
     return () => { cancelled = true; };
   }, [i18n.language]);
 
-  const [items, setItems] = useState<ItemRow[]>([
-    ...(list?.items ?? []).map((item) => ({
+  const [items, setItems] = useState<ItemRow[]>(() => {
+    const existingItems: ItemRow[] = (list?.items ?? []).map((item) => ({
       name: item.name ?? "",
       quantity: String(item.quantity ?? ""),
       unit: item.unit ?? "none",
-    })),
-    createEmptyItem(),
-  ]);
+    }));
+    const extraItems: ItemRow[] = (location.state?.items ?? [])
+      .filter((extra: ItemRow) => !existingItems.some((e) => e.name === extra.name))
+      .map((item: ItemRow) => ({ name: item.name, quantity: item.quantity, unit: item.unit }));
+    return [...existingItems, ...extraItems, createEmptyItem()];
+  });
 
   const unitOptions = getUnitOptions(t);
 

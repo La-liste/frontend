@@ -110,7 +110,9 @@
         "delete": "Supprimer la recette",
         "save": "Enregistrer la recette",
         "cook": "Cuisiner cette recette",
-        "list": "Lister ce qui manque",
+        "list": "Ajouter ce qui manque",
+        "new": "Dans une nouvelle liste",
+        "in": "Dans {{listName}}",
         "notFound": "Recette introuvable",
         "dialog": {
             "title": "Supprimer la recette ?",

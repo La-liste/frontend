@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/material";
+import { useState, useEffect, useRef } from "react";
+import { Stack, Typography, Divider, useMediaQuery, useTheme, Menu, MenuItem } from "@mui/material";
 import { TitlePage, DefaultButton, DefaultDialog } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
@@ -30,6 +30,9 @@ export default function Recipe() {
   );
 
   const [dialogOpen, setdialogOpen] = useState(false);
+  const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null);
+  const menuOpen = Boolean(menuAnchorEl);
+  const listButtonRef = useRef<HTMLDivElement>(null);
 
   const handleOpen = () => {
     setdialogOpen(true);
@@ -148,18 +151,37 @@ export default function Recipe() {
                 </Stack>
 
                 <Stack sx={{ mt: 4 }}>
-                  {hasMissingItems ? 
-                    <DefaultButton
-                      label={t("recipes.list")}
-                      action={() => navigate(`/lists/add`, { state: { items: missingItems } })}
-                      icon={AddIcon}
-                    />
-                     :
+                  {hasMissingItems ? (
+                    <>
+                      <div ref={listButtonRef}>
+                        <DefaultButton
+                          label={t("recipes.list")}
+                          action={() => setMenuAnchorEl(listButtonRef.current)}
+                          icon={AddIcon}
+                        />
+                      </div>
+                      <Menu
+                        anchorEl={menuAnchorEl}
+                        open={menuOpen}
+                        onClose={() => setMenuAnchorEl(null)}
+                      >
+                        <MenuItem onClick={() => { setMenuAnchorEl(null); navigate(`/lists/add`, { state: { items: missingItems } }); }}>
+                          {t("recipes.new")}
+                        </MenuItem>
+                        {placeholderData.lists.map((list, id) => (
+                          <MenuItem key={id} onClick={() => { setMenuAnchorEl(null); navigate(`/lists/${id}/edit`, { state: { items: missingItems } }); }}>
+                            {t("recipes.in", { listName: list.name })}
+                          </MenuItem>
+                        ))}
+                      </Menu>
+                    </>
+                  ) : (
                     <DefaultButton
                       label={t("recipes.cook")}
                       action={() => navigate(`/recipes`)}
                       icon={LocalDiningIcon}
-                    />}
+                    />
+                  )}
                 </Stack>
             </Stack>
             )}

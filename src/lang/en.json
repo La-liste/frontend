@@ -110,7 +110,9 @@
         "delete": "Delete recipe",
         "save": "Save recipe",
         "cook": "Cook this recipe",
-        "list": "List what's missing",
+        "list": "Add what's missing",
+        "new": "In a new list",
+        "in": "In {{listName}}",
         "notFound": "Recipe not found",
         "dialog": {
             "title": "Delete recipe?",
