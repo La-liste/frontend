@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Stack } from "@mui/material";
+import { Stack, Pagination } from "@mui/material";
 import { TitlePage, ListButton, DefaultButton } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
@@ -11,6 +11,10 @@ export default function Lists() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const lists = placeholderData.lists;
+  const ITEMS_PER_PAGE = 4;
+  const [page, setPage] = useState(1);
+  const pageCount = Math.ceil(lists.length / ITEMS_PER_PAGE);
+  const pagedLists = lists.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
   const [idToName, setIdToName] = useState<Record<string, string>>(
     () => buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0]).idToName
   );
@@ -30,11 +34,16 @@ export default function Lists() {
       <TitlePage text={t("lists.title")} isCentered />
 
       <Stack gap={4} sx={{ maxWidth: 500, width: "100%", margin: "24px auto" }}>
-        {lists.map((list, index) => (
-          <ListButton key={index} label={list.name} items={list.items.map(item => ({ ...item, name: idToName[item.name] ?? item.name }))} isShared={list.shared} action={() => navigate(`/lists/${index}`)} />
-        ))}
+        {pagedLists.map((list, index) => {
+          const realIndex = (page - 1) * ITEMS_PER_PAGE + index;
+          return (
+          <ListButton key={realIndex} label={list.name} items={list.items.map(item => ({ ...item, name: idToName[item.name] ?? item.name }))} isShared={list.shared} action={() => navigate(`/lists/${realIndex}`)} />
+        );
+        })}
 
-        <Stack sx={{ mt: 4 }}>
+        {pageCount > 1 && <Pagination count={pageCount} page={page} onChange={(_, value) => setPage(value)} color="primary" sx={{ mt: 1 }} />}
+
+        <Stack>
           <DefaultButton
             label={t("lists.add")}
             action={() => navigate("/lists/add")}

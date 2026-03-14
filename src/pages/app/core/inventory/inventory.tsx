@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, Typography, Divider, Pagination, useMediaQuery, useTheme } from "@mui/material";
 import { TitlePage, DefaultButton } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData } from "../../../../services/store/Ingredients";
@@ -19,6 +19,10 @@ export default function Inventory() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   const [idToName, setIdToName] = useState<Record<string, string>>({});
+  const ITEMS_PER_PAGE = 10;
+  const [page, setPage] = useState(1);
+  const pageCount = Math.ceil(items.length / ITEMS_PER_PAGE);
+  const pagedItems = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   useEffect(() => {
     let cancelled = false;
@@ -58,7 +62,7 @@ export default function Inventory() {
       
         <Divider sx={{ backgroundColor: "text.primary", height: "2.5px", mb: 2, width: isTablet ? "100%" : "85%" }} />
   
-        {items.map((item, index) => (
+        {pagedItems.map((item, index) => (
           <>
           <Stack direction="row" sx={{ pb: 1 }} key={index}>
           <Stack
@@ -94,6 +98,8 @@ export default function Inventory() {
           </>
         ))}
   
+        {pageCount > 1 && <Pagination count={pageCount} page={page} onChange={(_, value) => setPage(value)} color="primary" size={isTablet ? undefined : "large"} sx={{ mt: 1 }} />}
+
         <Stack sx={{ mt: 4 }}>
           <DefaultButton
             label={t("inventory.edit")}

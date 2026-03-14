@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, Typography, Divider, Pagination, useMediaQuery, useTheme } from "@mui/material";
 import { IconButton, DefaultButton, TitlePage, DefaultDialog } from "../../../../../components";
 import placeholderData from "../../../../../data/placeholder.json";
 import EditIcon from '@mui/icons-material/Edit';
@@ -15,6 +15,10 @@ export default function HomeSettings() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const homes = placeholderData.homes;
+  const ITEMS_PER_PAGE = 8;
+  const [page, setPage] = useState(1);
+  const pageCount = Math.ceil(homes.length / ITEMS_PER_PAGE);
+  const pagedHomes = homes.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const [dialogOpen, setdialogOpen] = useState(false);
 
@@ -52,7 +56,9 @@ return (
 
       <Divider sx={{ backgroundColor: "text.primary", height: "2.5px", width: isMobile ? "100%" : "85%", mb: 2 }} />
 
-      {homes.map((home, index) => (
+      {pagedHomes.map((home, index) => {
+        const realIndex = (page - 1) * ITEMS_PER_PAGE + index;
+        return (
         <Stack sx={{ maxWidth: 1200, width: "100%", margin: "6px auto 0px" }} key={index}>
           <Stack direction="row" alignItems={"center"} sx={{ pb: 1 }}>
             <Stack
@@ -72,14 +78,17 @@ return (
             </Stack>
             <Stack>
               <Stack direction="row" gap={1}>
-                <IconButton icon={EditIcon} action={() => navigate(`/settings/homes/${index}/edit`)} />
+                <IconButton icon={EditIcon} action={() => navigate(`/settings/homes/${realIndex}/edit`)} />
                 <IconButton icon={DeleteIcon} action={handleOpen} />
               </Stack>
             </Stack>
           </Stack>
           <Divider sx={{ backgroundColor: "text.primary", mb: 1, width: isMobile ? "100%" : "85%", opacity: 0.5 }} />
         </Stack>
-      ))}
+        );
+      })}
+
+      {pageCount > 1 && <Pagination count={pageCount} page={page} onChange={(_, value) => setPage(value)} color="primary" size={isMobile ? undefined : "large"} sx={{ mt: 1 }} />}
 
       <Stack sx={{ mt: 4 }}>
         <DefaultButton

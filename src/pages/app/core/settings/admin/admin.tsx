@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stack, Typography, Divider, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, Typography, Divider, Pagination, useMediaQuery, useTheme } from "@mui/material";
 import { IconButton, DefaultButton, TitlePage, DefaultDialog } from "../../../../../components";
 import placeholderData from "../../../../../data/placeholder.json";
 import EditIcon from '@mui/icons-material/Edit';
@@ -18,6 +18,10 @@ export default function AdminSettings() {
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const users = placeholderData.users;
+  const ITEMS_PER_PAGE = 8;
+  const [page, setPage] = useState(1);
+  const pageCount = Math.ceil(users.length / ITEMS_PER_PAGE);
+  const pagedUsers = users.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const [dialogOpen, setdialogOpen] = useState(false);
 
@@ -58,7 +62,9 @@ export default function AdminSettings() {
 
         <Divider sx={{ backgroundColor: "text.primary", height: "2.5px", mb: 2, width: isTablet ? "100%" : "85%" }} />
 
-        {users.map((user, index) => (
+        {pagedUsers.map((user, index) => {
+          const realIndex = (page - 1) * ITEMS_PER_PAGE + index;
+          return (
           <Stack key={index}>
             <Stack
               direction="row"
@@ -96,14 +102,17 @@ export default function AdminSettings() {
 
               <Stack>
                 <Stack direction="row" gap={1} sx={{ flexShrink: 0 }}>
-                  <IconButton icon={EditIcon} action={() => navigate(`/settings/admin/${index}/edit`)} />
+                  <IconButton icon={EditIcon} action={() => navigate(`/settings/admin/${realIndex}/edit`)} />
                   <IconButton icon={DeleteIcon} action={handleOpen} />
                 </Stack>
               </Stack>
             </Stack>
             <Divider sx={{ backgroundColor: "text.primary", mb: 1, width: isTablet ? "100%" : "85%", opacity: 0.5 }} />
           </Stack>
-        ))}
+        );
+        })}
+
+        {pageCount > 1 && <Pagination count={pageCount} page={page} onChange={(_, value) => setPage(value)} color="primary" size={isTablet ? undefined : "large"} sx={{ mt: 1 }} />}
 
         <Stack sx={{ mt: 4 }}>
           <DefaultButton
