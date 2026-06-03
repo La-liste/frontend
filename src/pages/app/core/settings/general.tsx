@@ -3,13 +3,15 @@ import { Stack, Typography } from "@mui/material";
 import { DefaultSelect, TitlePage } from "../../../../components";
 import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGUAGES } from "../../../../i18n";
-import { ThemeContext } from "../../../../theme";
+import { ThemeContext, ColorContext } from "../../../../theme";
 
 type ThemeOption = { name: string; value: string };
+type ColorOption = { name: string; value: string };
 
 export default function GeneralSettings() {
   const { t, i18n } = useTranslation();
   const { setThemeKey } = useContext(ThemeContext);
+  const { setColorKey } = useContext(ColorContext);
 
   const languages = Object.values(SUPPORTED_LANGUAGES);
 
@@ -20,10 +22,18 @@ export default function GeneralSettings() {
   const themes = t("settings.general.themes", { returnObjects: true }) as ThemeOption[];
   const themeNames = themes.map((th) => th.name);
 
+  const colors = t("settings.general.colors", { returnObjects: true }) as ColorOption[];
+  const colorNames = colors.map((cl) => cl.name);
+
   const storedThemeValue = localStorage.getItem("theme") ?? themes[0]?.value ?? "";
   const [themeValue, setThemeValue] = useState<string>(storedThemeValue);
   const selectedThemeName =
     themes.find((th) => th.value === themeValue)?.name ?? themes[0]?.name ?? "";
+
+  const storedColorValue = localStorage.getItem("color") ?? colors[0]?.value ?? "";
+  const [colorValue, setColorValue] = useState<string>(storedColorValue);
+  const selectedColorName =
+    colors.find((cl) => cl.value === colorValue)?.name ?? colors[0]?.name ?? "";
 
   useEffect(() => {
     const langCode = Object.entries(SUPPORTED_LANGUAGES).find(
@@ -59,6 +69,22 @@ export default function GeneralSettings() {
           }}
           variant={"outlined"}
           options={themeNames}
+        />
+      </Stack>
+
+      <Stack spacing={2} sx={{ maxWidth: 600, marginTop: 6 }}>
+        <Typography variant="h5">{t("settings.general.color")}</Typography>
+        <DefaultSelect
+          value={selectedColorName}
+          setValue={(colorName: string) => {
+            const selected = colors.find((cl) => cl.name === colorName);
+            if (selected) {
+              setColorValue(selected.value);
+              setColorKey(selected.value);
+            }
+          }}
+          variant={"outlined"}
+          options={colorNames}
         />
       </Stack>
     </Stack>

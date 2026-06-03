@@ -129,9 +129,24 @@
         },
         "general": {
             "title": "General settings",
-            "language": "Change language",
-            "theme": "Change theme",
+            "language": "Language",
+            "theme": "Theme",
             "themes": [
+                {
+                    "name": "Light",
+                    "value": "light"
+                },
+                {
+                    "name": "Dark",
+                    "value": "dark"
+                }
+            ],
+            "color": "Accent color",
+            "colors": [
+                {
+                    "name": "None",
+                    "value": "none"
+                },
                 {
                     "name": "Blue",
                     "value": "blue"
@@ -159,14 +174,6 @@
                 {
                     "name": "Pink",
                     "value": "pink"
-                },
-                {
-                    "name": "Black",
-                    "value": "black"
-                },
-                {
-                    "name": "White",
-                    "value": "white"
                 }
             ]
         },
