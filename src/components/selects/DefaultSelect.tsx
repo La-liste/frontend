@@ -1,7 +1,7 @@
 import { FormControl, MenuItem, Select, useMediaQuery, useTheme } from "@mui/material";
 import type { SelectChangeEvent } from "@mui/material/Select";
 
-export default function DefaultSelect({ label, variant, value, setValue, onChange, options }: { label?: string, variant: "standard" | "outlined" | "filled", value: string, setValue?: (value: string) => void, onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void, options?: string[] | { value: string; label: string }[] }) {
+export default function DefaultSelect({ label, variant, value, setValue, onChange, options }: { label?: string, variant: "standard" | "outlined" | "filled", value: string, setValue?: (value: string) => void, onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void, options?: readonly string[] | readonly { value: string; label: string }[] }) {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

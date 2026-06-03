@@ -16,7 +16,7 @@ export default function List() {
   const getUnitLabel = (value: string) => unitOptions.find((u) => u.value === value)?.label ?? value;
   const navigate = useNavigate();
   const { id } = useParams();
-  const list = placeholderData.lists[id];
+  const list = id !== undefined ? placeholderData.lists[parseInt(id)] : undefined;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));

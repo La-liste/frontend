@@ -1,11 +1,9 @@
-import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import { useTranslation } from "react-i18next";
 
 export default function TitleSmall() {
     const { t } = useTranslation();
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
         <Stack
