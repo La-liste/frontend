@@ -26,9 +26,9 @@ export default function DefaultDialog({ title, description, open, onConfirm, onC
                 {description}
                 </DialogContentText>
             </DialogContent>
-            <DialogActions sx={{ padding: "16px 24px" }}>
-                <DefaultButton action={onCancel} label={t('buttons.cancel')} />
+            <DialogActions sx={{ flexDirection: { md: "row", xs: "column" }, padding: "16px 24px", gap: { md: "0px", xs: "12px" } }}>
                 <DefaultButton action={onConfirm} label={t('buttons.confirm')} />
+                <DefaultButton action={onCancel} label={t('buttons.cancel')} />
             </DialogActions>
             </Dialog>
         </React.Fragment>
