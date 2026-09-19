@@ -31,7 +31,7 @@ export default function EditHomeSettings() {
         />
       </Stack>
       <Stack sx={{ position: "absolute", bottom: isMobile ? 96 : 56, left: "50%", transform: "translateX(-50%)" }}>
-        <DefaultButton label={t("settings.homes.edit.button")} icon={CheckIcon} action={() => navigate("/settings/homes")} />
+        <DefaultButton label={t("settings.homes.edit.button")} icon={CheckIcon} action={() => navigate("/settings/homes", { state: {success: true, type: "edit"} })} />
       </Stack>
     </Stack>
   );

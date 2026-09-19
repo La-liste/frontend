@@ -75,6 +75,12 @@
         "dialog": {
             "title": "Supprimer la liste ?",
             "description": "Êtes-vous sûr de vouloir supprimer cette liste ? Cette action est irréversible."
+        },
+        "alerts": {
+            "add": "La liste a été ajoutée avec succès",
+            "edit": "La liste a été modifiée avec succès",
+            "validate": "La liste a été validée avec succès",
+            "delete": "La liste a été supprimée avec succès"
         }
     },
     "inventory": {
@@ -88,7 +94,8 @@
             "slices": " Tranches",
             "bags": " Sachets",
             "pots": " Pots"
-        }
+        },
+        "alert": "L'inventaire a été modifié avec succès"
     },
     "recipes": {
         "title": "Recettes",
@@ -114,8 +121,20 @@
         "in": "Dans {{listName}}",
         "notFound": "Recette introuvable",
         "dialog": {
-            "title": "Supprimer la recette ?",
-            "description": "Êtes-vous sûr de vouloir supprimer cette recette ? Cette action est irréversible."
+            "delete": {
+                "title": "Supprimer la recette ?",
+                "description": "Êtes-vous sûr de vouloir supprimer cette recette ? Cette action est irréversible."
+            },
+            "cook": {
+                "title": "Cuisiner la recette ?",
+                "description": "Cuisiner la recette supprimera tous les ingrédients nécessaire de votre inventaire."
+            }
+        },
+        "alerts": {
+            "add": "La recette a été ajoutée avec succès",
+            "edit": "La recette a été modifiée avec succès",
+            "cook": "La recette a été envoyée en cuisine",
+            "delete": "La recette a été supprimée avec succès"
         }
     },
     "settings": {
@@ -125,7 +144,22 @@
             "account": "Mon compte",
             "homes": "Mes foyers",
             "admin": "Administration",
-            "save": "Enregistrer les modifications"
+            "save": "Sauvegarder"
+        },
+        "alerts": {
+            "account": {
+                "save": "Les paramètres ont été sauvegardés avec succès"
+            },
+            "homes": {
+                "add": "Le foyer a été ajouté avec succès",
+                "edit": "Le foyer a été modifié avec succès",
+                "delete": "Le foyer a été supprimé avec succès"
+            },
+            "users": {
+                "add": "L'utilisateur a été ajouté avec succès",
+                "edit": "L'utilisateur a été modifié avec succès",
+                "delete": "L'utilisateur a été supprimé avec succès"
+            }
         },
         "general": {
             "title": "Paramètres généraux",

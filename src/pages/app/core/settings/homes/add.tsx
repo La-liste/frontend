@@ -19,7 +19,7 @@ export default function AddHomeSettings() {
           <TextInput placeholder={t("settings.homes.name")} variant="outlined" onChange={() => {}} />
       </Stack>
       <Stack sx={{ position: "absolute", bottom: isMobile ? 96 : 56, left: "50%", transform: "translateX(-50%)" }}>
-        <DefaultButton label={t("settings.homes.add.button")} icon={AddIcon} action={() => navigate("/settings/homes")} />
+        <DefaultButton label={t("settings.homes.add.button")} icon={AddIcon} action={() => navigate("/settings/homes", { state: {success: true, type: "add"} })} />
       </Stack>
     </Stack>
   );

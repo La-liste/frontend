@@ -75,6 +75,12 @@
         "dialog": {
             "title": "Delete list?",
             "description": "Are you sure you want to delete this list? This action is irreversible."
+        },
+        "alerts": {
+            "add": "List successfully added",
+            "edit": "List successfully edited",
+            "validate": "List successfully validated",
+            "delete": "List successfully deleted"
         }
     },
     "inventory": {
@@ -88,7 +94,8 @@
             "slices": " Slices",
             "bags": " Bags",
             "pots": " Pots"
-        }
+        },
+        "alert": "Inventory successfully edited"
     },
     "recipes": {
         "title": "Recipes",
@@ -114,8 +121,20 @@
         "in": "In {{listName}}",
         "notFound": "Recipe not found",
         "dialog": {
-            "title": "Delete recipe?",
-            "description": "Are you sure you want to delete this recipe? This action is irreversible."
+            "delete": {
+                "title": "Delete recipe?",
+                "description": "Are you sure you want to delete this recipe? This action is irreversible."
+            },
+            "cook": {
+                "title": "Cook this recipe?",
+                "description": "Cooking this recipe will remove every needed ingredients from the inventory."
+            }
+        },
+        "alerts": {
+            "add": "Recipe successfully added",
+            "edit": "Recipe successfully edited",
+            "cook": "Recipe sent to kitchen",
+            "delete": "Recipe successfully deleted"
         }
     },
     "settings": {
@@ -126,6 +145,21 @@
             "homes": "My homes",
             "admin": "Administration",
             "save": "Save changes"
+        },
+        "alerts": {
+            "account": {
+                "save": "Settings successfully saved"
+            },
+            "homes": {
+                "add": "Home successfully added",
+                "edit": "Home successfully edited",
+                "delete": "Home successfully deleted"
+            },
+            "users": {
+                "add": "User successfully added",
+                "edit": "User successfully edited",
+                "delete": "User successfully deleted"
+            }
         },
         "general": {
             "title": "General settings",

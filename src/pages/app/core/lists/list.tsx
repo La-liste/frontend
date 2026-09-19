@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Stack, useTheme, useMediaQuery } from "@mui/material";
-import { TitlePage, DefaultButton, DefaultCheckbox, DefaultDialog } from "../../../../components";
+import { TitlePage, DefaultButton, DefaultCheckbox, DefaultDialog, DefaultAlert } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
 import { getUnitOptions } from "../../../../constants/units";
 import CheckIcon from "@mui/icons-material/Check";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function List() {
@@ -15,6 +15,7 @@ export default function List() {
   const unitOptions = getUnitOptions(t);
   const getUnitLabel = (value: string) => unitOptions.find((u) => u.value === value)?.label ?? value;
   const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams();
   const list = id !== undefined ? placeholderData.lists[parseInt(id)] : undefined;
   const theme = useTheme();
@@ -24,18 +25,21 @@ export default function List() {
     () => buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0]).idToName
   );
 
-  const [dialogOpen, setdialogOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const [alert, setAlert] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
 
   const handleOpen = () => {
-    setdialogOpen(true);
+    setDialogOpen(true);
   };
 
   const handleClose = () => {
-    setdialogOpen(false);
+    setDialogOpen(false);
   };
 
   const handleConfirm = () => {
-    setdialogOpen(false);
+    navigate("/lists", { state: {success: true, type: "delete"} });
   };
 
   useEffect(() => {
@@ -47,6 +51,19 @@ export default function List() {
     load();
     return () => { cancelled = true; };
   }, [i18n.language]);
+
+    useEffect(() => {
+      const checkAlert = async () => {
+        if (location.state?.success) {
+          setAlert(true);
+          setMessage("lists.alerts." + location.state.type);
+
+          navigate(location.pathname, { replace: true });
+        }
+      }
+
+      checkAlert();
+    }, [location, navigate])
 
   return (
     <>
@@ -63,7 +80,7 @@ export default function List() {
             <Stack direction={isTablet ? "column" : "row"} gap={2}>
               <DefaultButton
                 label={t("lists.edit")}
-                action={() => navigate(`/lists/${id}/edit`)}
+                action={() => navigate(`/lists/${id}/edit`, { state: {success: true, type: "edit"} })}
                 icon={EditIcon}
               />
               <DefaultButton
@@ -75,7 +92,7 @@ export default function List() {
             <Stack sx={{ mt: 4 }}>
               <DefaultButton
                 label={t("lists.validate")}
-                action={() => navigate("/lists")}
+                action={() => navigate("/lists", { state: {success: true, type: "validate"} })}
                 icon={CheckIcon}
               />
             </Stack>
@@ -83,6 +100,7 @@ export default function List() {
         )}
 
         <DefaultDialog title={t("lists.dialog.title")} description={t("lists.dialog.description")} open={dialogOpen} onConfirm={handleConfirm} onCancel={handleClose} />
+        {alert && <DefaultAlert content={message} success={alert} setSuccess={setAlert}></DefaultAlert>}
     </>
   );
 }

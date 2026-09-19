@@ -152,7 +152,7 @@ export default function RecipeEdit() {
             <Stack sx={{ mt: 4, width: "100%", alignItems: "center" }}>
               <DefaultButton
                 label={t("recipes.save")}
-                action={() => navigate(`/recipes/${id}`)}
+                action={() => navigate(`/recipes/${id}`, { state: {success: true, type: "edit"} })}
                 icon={CheckIcon}
               />
             </Stack>

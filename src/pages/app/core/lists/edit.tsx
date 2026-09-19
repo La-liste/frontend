@@ -158,7 +158,7 @@ export default function ListEdit() {
               <DefaultCheckbox label={t("lists.shared")} checked={shared} action={() => setShared((prev) => !prev)} isCentered />
                 <DefaultButton
                     label={t("lists.save")}
-                    action={() => navigate(`/lists/${id}`)}
+                    action={() => navigate(`/lists/${id}`, { state: {success: true, type: "edit"} })}
                     icon={CheckIcon}
                 />
             </Stack>

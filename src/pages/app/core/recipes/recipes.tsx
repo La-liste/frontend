@@ -1,20 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Stack, Pagination } from "@mui/material";
-import { TitlePage, BigButton, DefaultButton } from "../../../../components";
+import { TitlePage, BigButton, DefaultButton, DefaultAlert } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function Recipes() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const recipes = placeholderData.recipes;
   const ITEMS_PER_PAGE = 7;
   const [page, setPage] = useState(1);
   const pageCount = Math.ceil(recipes.length / ITEMS_PER_PAGE);
   const pagedRecipes = recipes.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+
+  const [alert, setAlert] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+
+  useEffect(() => {
+    const checkAlert = async () => {
+      if (location.state?.success) {
+        setAlert(true);
+        setMessage("recipes.alerts." + location.state.type);
+
+        navigate(location.pathname, { replace: true });
+      }
+    }
+
+    checkAlert();
+  }, [location, navigate])
 
   return (
     <>
@@ -28,15 +45,16 @@ export default function Recipes() {
 
         {pageCount > 1 && <Pagination count={pageCount} page={page} onChange={(_, value) => setPage(value)} color="primary" sx={{ mt: 2 }} />}
 
-      <Stack sx={{ mt: 3, width: "100%" }}>
-        <Stack>
-          <DefaultButton
-            label={t("recipes.add")}
-            action={() => navigate("/recipes/add")}
-            icon={AddIcon}
-          />
+        <Stack sx={{ mt: 3, width: "100%" }}>
+          <Stack>
+            <DefaultButton
+              label={t("recipes.add")}
+              action={() => navigate("/recipes/add")}
+              icon={AddIcon}
+            />
+          </Stack>
         </Stack>
-      </Stack>
+        {alert && <DefaultAlert content={message} success={alert} setSuccess={setAlert}></DefaultAlert>}
       </Stack>
     </>
   );

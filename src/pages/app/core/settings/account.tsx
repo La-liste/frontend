@@ -1,5 +1,6 @@
+import { useState } from "react"
 import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { TextInput, PasswordInput, DefaultButton, TitlePage } from "../../../../components";
+import { TextInput, PasswordInput, DefaultButton, TitlePage, DefaultAlert } from "../../../../components";
 import CheckIcon from "@mui/icons-material/Check";
 import { useTranslation } from "react-i18next";
 
@@ -8,6 +9,8 @@ export default function AccountSettings() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [save, setSave] = useState<boolean>(false);
 
   return (
     <Stack>
@@ -21,8 +24,11 @@ export default function AccountSettings() {
         <PasswordInput placeholder={t("auth.verify")} variant="outlined" onChange={() => {}} />
       </Stack>
       <Stack direction="row" justifyContent="center" sx={{ mt: "auto", mb: 4 }}>
-        <DefaultButton label={t("settings.buttons.save")} icon={CheckIcon} action={() => {}} />
+        <DefaultButton label={t("settings.buttons.save")} icon={CheckIcon} action={() => setSave(true)} />
       </Stack>
+
+      {save && <DefaultAlert content="settings.alerts.account.save" success={save} setSuccess={setSave}></DefaultAlert>}
+
     </Stack>
   );
 }

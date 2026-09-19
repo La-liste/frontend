@@ -6,3 +6,4 @@ export * from "./selects";
 export * from "./checkbox";
 export * from "./layout";
 export * from "./dialog";
+export * from "./alerts";

@@ -144,7 +144,7 @@ export default function ListAdd() {
               <DefaultCheckbox label={t("lists.shared")} isCentered />
               <DefaultButton
                 label={t("lists.save")}
-                action={() => navigate("/lists")}
+                action={() => navigate("/lists", { state: {success: true, type: "add"} })}
                 icon={CheckIcon}
               />
             </Stack>

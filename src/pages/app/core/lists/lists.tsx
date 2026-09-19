@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { Stack, Pagination } from "@mui/material";
-import { TitlePage, ListButton, DefaultButton } from "../../../../components";
+import { TitlePage, ListButton, DefaultButton, DefaultAlert } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function Lists() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const lists = placeholderData.lists;
   const ITEMS_PER_PAGE = 4;
   const [page, setPage] = useState(1);
@@ -18,6 +19,9 @@ export default function Lists() {
   const [idToName, setIdToName] = useState<Record<string, string>>(
     () => buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0]).idToName
   );
+
+  const [alert, setAlert] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     let cancelled = false;
@@ -28,6 +32,19 @@ export default function Lists() {
     load();
     return () => { cancelled = true; };
   }, [i18n.language]);
+
+    useEffect(() => {
+      const checkAlert = async () => {
+        if (location.state?.success) {
+          setAlert(true);
+          setMessage("lists.alerts." + location.state.type);
+
+          navigate(location.pathname, { replace: true });
+        }
+      }
+
+      checkAlert();
+    }, [location, navigate])
 
   return (
     <>
@@ -50,6 +67,8 @@ export default function Lists() {
             icon={AddIcon}
           />
         </Stack>
+
+        {alert && <DefaultAlert content={message} success={alert} setSuccess={setAlert}></DefaultAlert>}
       </Stack>
     </>
   );

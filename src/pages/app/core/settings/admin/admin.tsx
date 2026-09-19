@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Stack, Typography, Divider, Pagination, useMediaQuery, useTheme } from "@mui/material";
-import { IconButton, DefaultButton, TitlePage, DefaultDialog } from "../../../../../components";
+import { IconButton, DefaultButton, TitlePage, DefaultDialog, DefaultAlert } from "../../../../../components";
 import placeholderData from "../../../../../data/placeholder.json";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -8,11 +8,12 @@ import AddIcon from "@mui/icons-material/Add";
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function AdminSettings() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -23,19 +24,37 @@ export default function AdminSettings() {
   const pageCount = Math.ceil(users.length / ITEMS_PER_PAGE);
   const pagedUsers = users.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const [dialogOpen, setdialogOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  
+  const [alert, setAlert] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
 
   const handleOpen = () => {
-    setdialogOpen(true);
+    setDialogOpen(true);
   };
 
   const handleClose = () => {
-    setdialogOpen(false);
+    setDialogOpen(false);
   };
 
   const handleConfirm = () => {
-    setdialogOpen(false);
+    setDialogOpen(false);
+    setMessage("settings.alerts.users.delete");
+    setAlert(true);
   };
+
+  useEffect(() => {
+    const checkAlert = async () => {
+      if (location.state?.success) {
+        setAlert(true);
+        setMessage("settings.alerts.users." + location.state.type);
+
+        navigate(location.pathname, { replace: true });
+      }
+    }
+
+    checkAlert();
+  }, [location, navigate])
 
   return (
     <Stack sx={{ maxWidth: 1200, width: "100%", margin: "0 auto", px: { xs: 1, sm: 2, md: 3 } }}>
@@ -124,6 +143,7 @@ export default function AdminSettings() {
       </Stack>
 
       <DefaultDialog title={t("settings.admin.dialog.title")} description={t("settings.admin.dialog.description")} open={dialogOpen} onConfirm={handleConfirm} onCancel={handleClose} />
+      {alert && <DefaultAlert content={message} success={alert} setSuccess={setAlert}></DefaultAlert>}
     </Stack>
   );
 }

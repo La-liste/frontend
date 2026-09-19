@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Stack, Typography, Divider, Pagination, useMediaQuery, useTheme } from "@mui/material";
-import { TitlePage, DefaultButton } from "../../../../components";
+import { TitlePage, DefaultButton, DefaultAlert } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData } from "../../../../services/store/Ingredients";
 import type { IngredientTaxonomy } from "../../../../services/store/Ingredients";
 import { getUnitOptions } from "../../../../constants/units";
 import EditIcon from "@mui/icons-material/Edit";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function Inventory() {
@@ -14,6 +14,7 @@ export default function Inventory() {
   const unitOptions = getUnitOptions(t);
   const getUnitLabel = (value: string) => unitOptions.find((u) => u.value === value)?.label ?? value;
   const navigate = useNavigate();
+  const location = useLocation();
   const items = placeholderData.items;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -23,6 +24,8 @@ export default function Inventory() {
   const [page, setPage] = useState(1);
   const pageCount = Math.ceil(items.length / ITEMS_PER_PAGE);
   const pagedItems = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+
+  const [alert, setAlert] = useState<boolean>(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -39,6 +42,18 @@ export default function Inventory() {
     load();
     return () => { cancelled = true; };
   }, [i18n.language]);
+
+  useEffect(() => {
+    const checkAlert = async () => {
+      if (location.state?.success) {
+        setAlert(true);
+
+        navigate(location.pathname, { replace: true });
+      }
+    }
+
+    checkAlert();
+  }, [location, navigate])
 
   return (
     <>
@@ -107,6 +122,8 @@ export default function Inventory() {
             icon={EditIcon}
           />
         </Stack>
+
+        {alert && <DefaultAlert content={"inventory.alert"} success={alert} setSuccess={setAlert}></DefaultAlert>}
       </Stack>
     </>
   );

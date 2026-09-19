@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Stack, Typography, Divider, useMediaQuery, useTheme, Menu, MenuItem } from "@mui/material";
-import { TitlePage, DefaultButton, DefaultDialog } from "../../../../components";
+import { TitlePage, DefaultButton, DefaultDialog, DefaultAlert } from "../../../../components";
 import placeholderData from "../../../../data/placeholder.json";
 import { getIngredientsData, getIngredientsDataSync, buildMaps } from "../../../../services/store/Ingredients";
 import { getUnitOptions } from "../../../../constants/units";
@@ -9,7 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import WarningIcon from '@mui/icons-material/Warning';
 import AddIcon from "@mui/icons-material/Add";
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 type RecipeIngredient = { name: string; quantity: string, unit: string };
@@ -19,6 +19,7 @@ export default function Recipe() {
   const unitOptions = getUnitOptions(t);
   const getUnitLabel = (value: string) => unitOptions.find((u) => u.value === value)?.label ?? value;
   const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams();
   const recipe = id ? placeholderData.recipes[Number(id)] : undefined;
   const theme = useTheme();
@@ -29,21 +30,30 @@ export default function Recipe() {
     () => buildMaps(getIngredientsDataSync(), i18n.language.split("-")[0]).idToName
   );
 
-  const [dialogOpen, setdialogOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null);
   const menuOpen = Boolean(menuAnchorEl);
   const listButtonRef = useRef<HTMLDivElement>(null);
 
-  const handleOpen = () => {
-    setdialogOpen(true);
+  const [alert, setAlert] = useState<boolean>(false);
+  const [type, setType] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+
+  const handleOpen = (type: string) => {
+    setType(type);
+    setTitle("recipes.dialog." + type + ".title")
+    setDescription("recipes.dialog." + type + ".description")
+    setDialogOpen(true);
   };
 
   const handleClose = () => {
-    setdialogOpen(false);
+    setDialogOpen(false);
   };
 
   const handleConfirm = () => {
-    setdialogOpen(false);
+    navigate("/recipes", {state: {success: true, type: type}});
   };
 
   useEffect(() => {
@@ -55,6 +65,19 @@ export default function Recipe() {
     load();
     return () => { cancelled = true; };
   }, [i18n.language]);
+
+  useEffect(() => {
+    const checkAlert = async () => {
+      if (location.state?.success) {
+        setAlert(true);
+        setMessage("recipes.alerts." + location.state.type);
+
+        navigate(location.pathname, { replace: true });
+      }
+    }
+
+    checkAlert();
+  }, [location, navigate])
 
   const availableItems = placeholderData.items;
   const isItemInList = (ingredientId: string) =>
@@ -145,7 +168,7 @@ export default function Recipe() {
                   />
                   <DefaultButton
                     label={t("recipes.delete")}
-                    action={handleOpen}
+                    action={() => handleOpen("delete")}
                     icon={DeleteIcon}
                   />
                 </Stack>
@@ -178,7 +201,7 @@ export default function Recipe() {
                   ) : (
                     <DefaultButton
                       label={t("recipes.cook")}
-                      action={() => navigate(`/recipes`)}
+                      action={() => handleOpen("cook")}
                       icon={LocalDiningIcon}
                     />
                   )}
@@ -186,7 +209,8 @@ export default function Recipe() {
             </Stack>
             )}
 
-            <DefaultDialog title={t("recipes.dialog.title")} description={t("recipes.dialog.description")} open={dialogOpen} onConfirm={handleConfirm} onCancel={handleClose} />
+            <DefaultDialog title={t(title)} description={t(description)} open={dialogOpen} onConfirm={handleConfirm} onCancel={handleClose} />
+            {alert && <DefaultAlert content={message} success={alert} setSuccess={setAlert}></DefaultAlert>}
           </Stack>
     </>
   );

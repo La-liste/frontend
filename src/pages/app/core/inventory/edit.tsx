@@ -153,7 +153,7 @@ export default function InventoryEdit() {
         <Stack sx={{ mt: 4, width: "100%", alignItems: "center" }}>
           <DefaultButton
             label={t("inventory.save")}
-            action={() => navigate("/inventory")}
+            action={() => navigate("/inventory", { state: {success: true} })}
             icon={CheckIcon}
           />
         </Stack>

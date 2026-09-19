@@ -79,7 +79,7 @@ export default function EditAdminSettings() {
         </Stack>
       </Stack>
       <Stack sx={{ position: "absolute", bottom: isMobile ? 96 : 56, left: "50%", transform: "translateX(-50%)" }}>
-        <DefaultButton label={t("settings.admin.edit.button")} icon={CheckIcon} action={() => navigate("/settings/admin")} />
+        <DefaultButton label={t("settings.admin.edit.button")} icon={CheckIcon} action={() => navigate("/settings/admin", { state: {success: true, type: "edit"} })} />
       </Stack>
     </Stack>
   );
