@@ -127,7 +127,7 @@
             },
             "cook": {
                 "title": "Cuisiner la recette ?",
-                "description": "Cuisiner la recette supprimera tous les ingrédients nécessaire de votre inventaire."
+                "description": "Cuisiner cette recette supprimera tous les ingrédients nécessaire de votre inventaire."
             }
         },
         "alerts": {
